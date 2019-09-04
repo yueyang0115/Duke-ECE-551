@@ -4,6 +4,6 @@
 4. double 3.4
 5. int 102
 6. int 4
-7. int 0x80000004
+7. int -4
 8. double 99.4
 
