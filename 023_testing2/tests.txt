@@ -1,0 +1,46 @@
+aaab abcc
+aabb aabbc
+abca abcde
+aacd abcde
+aabbc bbbbbb
+aabbc abcdef
+aaaaaa bbbbbb
+ABcd abcdea
+abcd abcdea
+ababa aabbc
+aabba aabbc
+aabaa aabbc
+aaaba aaabc
+aaba1 aabbc
+11ba1 aabbc
+abaaa aaabc
+aaaa7 aaaa8
+abcde
+abcd
+aabbc
+aabbc ccade
+aaacc bbbde
+aaacc bbbcc
+aaacc aaadd
+aaa11 aaa22
+aaaac bbbbc
+aaaaa bbbbb
+aabcd abcde
+bcdaa abcde
+abcda abcde
+abacd abcde
+acdaa abcde
+acaad abcde
+$abc$ abcde
+$abc$ 1abc1
+$abc$ $a$a$
+$abc$ $aab$
+aabbc abcde aaacc
+babab abcde
+bacae abcde
+$a1ba $cd11
+$a$cb $cdfg
+a,a,a abcde
+abcdA abcde
+aabcd aabbb
+12341 5234
