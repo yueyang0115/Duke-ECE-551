@@ -1,0 +1,11 @@
+Grading at 09/16/2019:18:40:10.585405
+For commit ID 22fa162f16fc2872462eb108135ff36b6c3eb42a
+Grading at Mon Sep 16 14:40:10 EDT 2019
+Attempting to compile test.c
+gcc -std=gnu99 -pedantic -Wall -c test.c
+gcc -o test test.o
+compiled
+Your file matched the expected output
+Your output matched what we expected
+
+Overall Grade: A
