@@ -1,0 +1,25 @@
+Grading at 09/17/2019:13:39:44.834019
+For commit ID 2f99dfee010dc9d77834f65ad994db24a13375a3
+Grading at Tue Sep 17 09:39:44 EDT 2019
+**Testing broken implementation 10 **
+-------------------------------------
+
+find a broken case!
+**Testing broken implementation 11 **
+-------------------------------------
+
+find a broken case!
+**Testing broken implementation 1 **
+-------------------------------------
+
+find a broken case!
+**Testing broken implementation 2 **
+-------------------------------------
+
+find a broken case!
+**Testing broken implementation 3 **
+-------------------------------------
+
+exit successYour test program did not identify /usr/local/ece551/subseq/subseq3.o as broken!
+
+Overall Grade: FAILED
