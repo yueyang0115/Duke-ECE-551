@@ -14,7 +14,12 @@ size_t maxSeq(int * array, size_t n) {
     else {
       maxSeq = 0;
     }
-    store_num[i] = maxSeq + 1;
+    if (maxSeq != 0) {
+      store_num[i] = maxSeq + 1;
+    }
+    else {
+      store_num[i] = maxSeq + 1;
+    }
   }
   size_t max_number = store_num[0];
   for (size_t i = 1; i < n; i++) {
