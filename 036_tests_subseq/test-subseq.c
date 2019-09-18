@@ -16,7 +16,6 @@ int main(void) {
   int a2[7] = {1, 2, 4, 4, 9, 7, 5};
   int a3[8] = {1, 9, 10, 11, 2, 1, 4, 5};
   int a4[10] = {-2, -1, 3, 1, 0, -1, -2, 4, 5, 6};
-  int a5[0];
   int a6[6] = {0, 0, 0, 0, 0, 0};
   int a7[6] = {1, 2, 3, 4, 5, 6};
   int a8[7] = {1, 2, 3, 3, 4, 5, 6};
@@ -29,12 +28,11 @@ int main(void) {
   run_check(a2, 7, 3);
   run_check(a3, 8, 4);
   run_check(a4, 10, 4);
-  run_check(a5, 0, 0);
   run_check(a6, 6, 0);
   run_check(a7, 6, 6);
   run_check(a8, 7, 4);
   run_check(a10, 3, 2);
   run_check(a11, 2, 2);
-  run_check(a12, 1, 0);
+  run_check(a12, 1, 1);
   exit(EXIT_SUCCESS);
 }
