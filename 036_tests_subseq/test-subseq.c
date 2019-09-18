@@ -28,7 +28,7 @@ int main(void) {
   run_check(a2, 7, 3);
   run_check(a3, 8, 4);
   run_check(a4, 10, 4);
-  run_check(a6, 6, 0);
+  run_check(a6, 6, 1);
   run_check(a7, 6, 6);
   run_check(a8, 7, 4);
   run_check(a10, 3, 2);

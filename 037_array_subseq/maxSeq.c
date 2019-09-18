@@ -2,8 +2,11 @@
 #include <stdlib.h>
 
 size_t maxSeq(int * array, size_t n) {
-  if (n <= 1) {
+  if (n == 0) {
     return 0;
+  }
+  if (n == 1) {
+    return 1;
   }
   size_t i;
   size_t maxSeq = 0;
@@ -18,12 +21,7 @@ size_t maxSeq(int * array, size_t n) {
     else {
       maxSeq = 0;
     }
-    if (maxSeq != 0) {
-      store_num[i] = maxSeq + 1;
-    }
-    else {
-      store_num[i] = 0;
-    }
+    store_num[i] = maxSeq + 1;
   }
   size_t max_number = store_num[0];
   for (i = 1; i < n; i++) {
