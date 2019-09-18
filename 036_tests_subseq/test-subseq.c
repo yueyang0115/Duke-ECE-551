@@ -33,6 +33,6 @@ int main(void) {
   run_check(a8, 7, 4);
   run_check(a10, 3, 2);
   run_check(a11, 2, 2);
-  run_check(a12, 1, 0);
+  run_check(a12, 1, 1);
   exit(EXIT_SUCCESS);
 }
