@@ -1,0 +1,22 @@
+Grading at 09/19/2019:19:14:57.682817
+For commit ID 8817b770fdd463d1b728fee079e833d660279f21
+Grading at Thu Sep 19 15:14:56 EDT 2019
+[32mSuccessfully compiled ['step1.c'].[0m
+Checking for 'int seq1(int x)'
+[32mfound 'int seq1(int x)' in your source code 'step1.c'[0m
+Checking for 'void printSeq1Range(int low, int high)'
+[32mfound 'void printSeq1Range(int low, int high)' in your source code 'step1.c'[0m
+[32mno spurious debug output in step1.c[0m
+[32mSuccessfully compiled ['step2.c'].[0m
+Checking for 'int seq2(int x)'
+[32mfound 'int seq2(int x)' in your source code 'step2.c'[0m
+Checking for 'int sumSeq2(int low, int high)'
+[32mfound 'int sumSeq2(int low, int high)' in your source code 'step2.c'[0m
+[32mno spurious debug output in step2.c[0m
+[32mSuccessfully compiled ['step3.c'].[0m
+Checking for 'int seq3(int x, int y)'
+[32mfound 'int seq3(int x, int y)' in your source code 'step3.c'[0m
+Checking for 'int countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi)'
+[32mfound 'int countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi)' in your source code 'step3.c'[0m
+[32mno spurious debug output in step3.c[0m
+Overall Grade: NO GRADE YET
