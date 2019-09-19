@@ -29,8 +29,8 @@ int countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi) {
   }
 }
 
-void run_check_contEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi) {
-  printf("countEvenInseq3range(%d, %d, %d, %d) = %d\n",
+void run_check_countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi) {
+  printf("countEvenInSeq3Range(%d, %d, %d, %d) = %d\n",
          xLow,
          xHi,
          yLow,
@@ -39,11 +39,12 @@ void run_check_contEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi) {
 }
 
 int main(void) {
-  run_check_seq3(-5, -5, 30);
-  run_check_seq3(-4, -4, 20);
-  run_check_seq3(-3, -3, 12);
-  run_check_seq3(-2, -2, 6);
-  run_check_seq3(-1, -1, 2);
+  run_check_seq3(-6, -6, 42);
+  run_check_seq3(-5, -4, 27);
+  run_check_seq3(-4, -3, 18);
+  run_check_seq3(-3, -2, 11);
+  run_check_seq3(-2, -1, 6);
+  run_check_seq3(-1, 0, 3);
   run_check_seq3(1, -1, -6);
   run_check_seq3(2, -2, -14);
   run_check_seq3(3, -3, -24);
@@ -51,11 +52,11 @@ int main(void) {
   run_check_seq3(5, 4, 13);
   run_check_seq3(-1, 5, 8);
 
-  run_check_contEvenInSeq3Range(0, 2, 0, 3);
-  run_check_contEvenInSeq3Range(1, 0, 4, 7);
-  run_check_contEvenInSeq3Range(4, 7, 1, 1);
-  run_check_contEvenInSeq3Range(-3, 4, 2, 7);
-  run_check_contEvenInSeq3Range(-1, 2, -2, 2);
+  run_check_countEvenInSeq3Range(0, 2, 0, 3);
+  run_check_countEvenInSeq3Range(1, 0, 4, 7);
+  run_check_countEvenInSeq3Range(4, 7, 1, 1);
+  run_check_countEvenInSeq3Range(-3, 4, 2, 7);
+  run_check_countEvenInSeq3Range(-1, 2, -2, 2);
   exit(EXIT_SUCCESS);
 }
 

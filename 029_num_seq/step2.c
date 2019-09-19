@@ -47,6 +47,7 @@ int main(void) {
   run_check_seq2(6, 12);
   run_check_seq2(14, 28);
   //  printf("test case run successfully for seq2\n");
+  run_check_sumSeq2(-4, -1);
   run_check_sumSeq2(0, 2);
   run_check_sumSeq2(3, 6);
   run_check_sumSeq2(9, 7);
