@@ -1,6 +1,6 @@
-Grading at 09/19/2019:19:14:57.682817
-For commit ID 8817b770fdd463d1b728fee079e833d660279f21
-Grading at Thu Sep 19 15:14:56 EDT 2019
+Grading at 09/19/2019:20:10:10.099665
+For commit ID cef58249a38155c004d6111939c5467b24dddee2
+Grading at Thu Sep 19 16:10:09 EDT 2019
 [32mSuccessfully compiled ['step1.c'].[0m
 Checking for 'int seq1(int x)'
 [32mfound 'int seq1(int x)' in your source code 'step1.c'[0m
