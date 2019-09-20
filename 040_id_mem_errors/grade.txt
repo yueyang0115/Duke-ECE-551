@@ -1,9 +1,7 @@
-Grading at 09/20/2019:20:47:38.718944
-For commit ID a3e9ac3a8e41b380184aa907917539f1d4213812
-Grading at Fri Sep 20 16:47:38 EDT 2019
-Line_1_did_not_match
-Line_3_did_not_match
-Your file did not match the expected ouput
-Your output did not match what we expected.
+Grading at 09/20/2019:20:54:19.674330
+For commit ID 682af596819d807542a7f13df2dfd3a4eb6b0f32
+Grading at Fri Sep 20 16:54:19 EDT 2019
+Your file matched the expected output
+Your output matched what we expected
 
-Overall Grade: F
+Overall Grade: A
