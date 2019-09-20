@@ -1,10 +1,8 @@
-Grading at 09/20/2019:03:34:59.847143
-For commit ID e8ac2b4399d2c433c478384f01d103aaed27e590
-Grading at Thu Sep 19 23:34:59 EDT 2019
+Grading at 09/20/2019:20:44:36.114643
+For commit ID f6c2f77e49a2e8c91974beb03c51fa1e3a95eda7
+Grading at Fri Sep 20 16:44:36 EDT 2019
 Line_1_did_not_match
 Line_2_did_not_match
-Line_3_did_not_match
-Line_4_did_not_match
 Your file did not match the expected ouput
 Your output did not match what we expected.
 
