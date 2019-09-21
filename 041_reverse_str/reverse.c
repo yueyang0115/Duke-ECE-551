@@ -3,14 +3,16 @@
 #include <string.h>
 
 void reverse(char * str) {
-  int size = strlen(str);
-  char reverse_str[size];
-  for (int i = 0; i < size; i++) {
-    reverse_str[size - 1 - i] = str[i];
-  }
-  for (int i = 0; i < size; i++) {
-    *str = reverse_str[i];
-    str++;
+  if (str != NULL) {
+    int size = strlen(str);
+    char reverse_str[size];
+    for (int i = 0; i < size; i++) {
+      reverse_str[size - 1 - i] = str[i];
+    }
+    for (int i = 0; i < size; i++) {
+      *str = reverse_str[i];
+      str++;
+    }
   }
 }
 
