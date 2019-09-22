@@ -2,9 +2,9 @@ B
 C
 B
 E
-C
-A
+E
+B
 D
-A
+D
 F
 E
