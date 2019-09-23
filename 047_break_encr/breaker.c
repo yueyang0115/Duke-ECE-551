@@ -4,7 +4,7 @@
 
 int find_max(int * array) {
   int index = 0;
-  int max_num = array[0];
+  int max_num = 0;
   for (int i = 0; i < 25; i++) {
     if (array[i + 1] > max_num) {
       max_num = array[i + 1];
