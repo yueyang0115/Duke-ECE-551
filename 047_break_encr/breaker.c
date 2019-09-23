@@ -4,8 +4,10 @@
 
 int find_max(int * array) {
   int index = 0;
+  int max_num = array[0];
   for (int i = 0; i < 25; i++) {
-    if (array[i + 1] > array[i]) {
+    if (array[i + 1] > max_num) {
+      max_num = array[i + 1];
       index = i + 1;
     }
   }
@@ -15,6 +17,9 @@ int find_max(int * array) {
 void find_key(FILE * f) {
   int c;
   int letter[26];
+  for (int i = 0; i < 26; i++) {
+    letter[i] = 0;
+  }
   while ((c = fgetc(f)) != EOF) {
     if ((isalpha(c))) {
       c = tolower(c);
@@ -25,9 +30,13 @@ void find_key(FILE * f) {
       }
     }
   }
+  /*for (int i = 0; i < 26; i++) {
+    printf("letter[%d]=%d\n", i, letter[i]);
+    }*/
   int max_index = find_max(letter);
+  //printf("max_index = %d\n", max_index);
   int key;
-  key = (max_index + 26) % 26 - 4;
+  key = (max_index + 26 - 4) % 26;
   printf("%d\n", key);
 }
 
