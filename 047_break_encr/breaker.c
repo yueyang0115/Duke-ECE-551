@@ -28,7 +28,7 @@ void find_key(FILE * f) {
   int max_index = find_max(letter);
   int key;
   key = (max_index + 26) % 26 - 4;
-  printf("key = %d\n", key);
+  printf("%d\n", key);
 }
 
 int main(int argc, char ** argv) {
