@@ -19,7 +19,6 @@ void rotate_matrix(FILE * f) {
       }
     }
   }
-
   if (fgets(line, 12, f) != NULL) {
     printf("There are more than ten lines");
     exit(EXIT_FAILURE);
@@ -27,7 +26,13 @@ void rotate_matrix(FILE * f) {
 
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
-      printf("%c", rotate_matrix[i][j]);
+      if (rotate_matrix[i][j] != EOF) {
+        printf("%c", rotate_matrix[i][j]);
+      }
+      else {
+        printf("EOF in the middle of the matrix\n");
+        exit(EXIT_FAILURE);
+      }
     }
     printf("%c", '\n');
   }
