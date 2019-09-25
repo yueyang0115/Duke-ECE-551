@@ -4,8 +4,9 @@
 int f(int n) {
   int * p = malloc(2 * sizeof(*p));
   p[0] = n;
-  p[1] = n+2;
+  p[1] = n + 2;
   int ans = p[0] * p[1];
+  free(p);
   return ans;
 }
 
@@ -16,7 +17,9 @@ int main(void) {
   p[0] = f(1);
   *r = NULL;
   q = malloc(2 * sizeof(*q));
+  free(p);
   p = q;
+  free(q);
   q = NULL;
   return EXIT_SUCCESS;
 }
