@@ -23,7 +23,20 @@ void rotate_matrix(FILE * f) {
       }
       else {
         for (int i = 0; i < 10; i++) {
-          rotate_matrix[i][9 - j] = line[i];
+          if (line[i] == '\n') {
+            fprintf(stderr, "There is a line with incorrext number of characters\n");
+            exit(EXIT_FAILURE);
+          }
+          else {
+            rotate_matrix[i][9 - j] = line[i];
+            /* printf("for j = %d, line[%d] = %c, rotate_matrix[%d][%d] = %c\n",
+                   j,
+                   i,
+                   line[i],
+                   i,
+                   9 - j,
+                   rotate_matrix[i][9 - j]);*/
+          }
         }
       }
     }
@@ -40,13 +53,7 @@ void rotate_matrix(FILE * f) {
 
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
-      if (rotate_matrix[i][j] != EOF) {
-        printf("%c", rotate_matrix[i][j]);
-      }
-      else {
-        fprintf(stderr, "EOF in the middle of the matrix\n");
-        exit(EXIT_FAILURE);
-      }
+      printf("%c", rotate_matrix[i][j]);
     }
     printf("%c", '\n');
   }
