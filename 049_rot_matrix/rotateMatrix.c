@@ -10,15 +10,15 @@ void rotate_matrix(FILE * f) {
   for (int j = 0; j < 10; j++) {
     if ((fgets(line, 12, f) != NULL)) {
       if (strchr(line, '\n') == NULL) {
-        printf("There is a line with more than ten characters\n");
+        fprintf(stderr, "There is a line with more than ten characters\n");
         exit(EXIT_FAILURE);
       }
       if (line[10] != '\n') {
-        printf("There is a line with incorrext number of characters\n");
+        fprintf(stderr, "There is a line with incorrext number of characters\n");
         exit(EXIT_FAILURE);
       }
       if (line[0] == '\n') {
-        printf("There are less than ten lines\n");
+        fprintf(stderr, "There are less than ten lines\n");
         exit(EXIT_FAILURE);
       }
       else {
@@ -28,13 +28,13 @@ void rotate_matrix(FILE * f) {
       }
     }
     else {
-      printf("There are less than ten lines\n");
+      fprintf(stderr, "There are less than ten lines\n");
       exit(EXIT_FAILURE);
     }
   }
 
   if (fgets(line, 12, f) != NULL) {
-    printf("There are more than ten lines");
+    fprintf(stderr, "There are more than ten lines\n");
     exit(EXIT_FAILURE);
   }
 
@@ -44,7 +44,7 @@ void rotate_matrix(FILE * f) {
         printf("%c", rotate_matrix[i][j]);
       }
       else {
-        printf("EOF in the middle of the matrix\n");
+        fprintf(stderr, "EOF in the middle of the matrix\n");
         exit(EXIT_FAILURE);
       }
     }
@@ -59,12 +59,14 @@ int main(int argc, char ** argv) {
   }
   FILE * f = fopen(argv[1], "r");
   if (f == NULL) {
-    perror("Could not open file");
+    //perror("Could not open file");
+    fprintf(stderr, "Could not open file");
     return EXIT_FAILURE;
   }
   rotate_matrix(f);
   if (fclose(f) != 0) {
-    perror("Failed to close the input file!");
+    //perror("Failed to close the input file!");
+    fprintf(stderr, "Failed to close the input file!");
     return EXIT_FAILURE;
   }
   return EXIT_SUCCESS;
