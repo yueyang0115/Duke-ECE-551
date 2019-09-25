@@ -8,17 +8,31 @@ void rotate_matrix(FILE * f) {
   char rotate_matrix[10][10] = {{0}};
 
   for (int j = 0; j < 10; j++) {
-    fgets(line, 12, f);
-    if (strchr(line, '\n') == NULL) {
-      printf("There is a line with more than ten characters\n");
-      exit(EXIT_FAILURE);
-    }
-    else {
-      for (int i = 0; i < 10; i++) {
-        rotate_matrix[i][9 - j] = line[i];
+    if ((fgets(line, 12, f) != NULL)) {
+      if (strchr(line, '\n') == NULL) {
+        printf("There is a line with more than ten characters\n");
+        exit(EXIT_FAILURE);
+      }
+      if (line[10] != '\n') {
+        printf("There is a line with incorrext number of characters\n");
+        exit(EXIT_FAILURE);
+      }
+      if (line[0] == '\n') {
+        printf("There are less than ten lines\n");
+        exit(EXIT_FAILURE);
+      }
+      else {
+        for (int i = 0; i < 10; i++) {
+          rotate_matrix[i][9 - j] = line[i];
+        }
       }
     }
+    else {
+      printf("There are less than ten lines\n");
+      exit(EXIT_FAILURE);
+    }
   }
+
   if (fgets(line, 12, f) != NULL) {
     printf("There are more than ten lines");
     exit(EXIT_FAILURE);
