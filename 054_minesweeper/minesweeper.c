@@ -41,17 +41,17 @@ void addRandomMine(board_t * b) {
 
 board_t * makeBoard(int w, int h, int numMines) {
   //WRITE ME!
-  //board_t * b;
-  //b = (board_t *)malloc(sizeof(board_t));
-  board_t * b = malloc(sizeof(*b));
+  board_t * b;
+  b = (board_t *)malloc(sizeof(board_t));
+  //board_t * b = malloc(sizeof(*b));
   b->width = w;
   b->height = h;
-  b->totalMines = 0;
-  //b->board = (int **)malloc(sizeof(int *) * h);
-  b->board = malloc(h * sizeof(int *));
+  b->totalMines = numMines;
+  b->board = (int **)malloc(sizeof(int *) * h);
+  //b->board = malloc(h * sizeof(int *));
   for (int y = 0; y < h; y++) {
-    //b->board[y] = (int *)malloc(sizeof(int) * w);
-    b->board[y] = malloc(w * sizeof(int));
+    b->board[y] = (int *)malloc(sizeof(int) * w);
+    //b->board[y] = malloc(w * sizeof(int));
   }
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
@@ -66,7 +66,7 @@ board_t * makeBoard(int w, int h, int numMines) {
   }
   free(b->board);
   free(b);*/
-  //  return NULL;
+  //return NULL;
   return b;
 }
 void printBoard(board_t * b) {
@@ -121,6 +121,7 @@ void printBoard(board_t * b) {
 }
 int countMines(board_t * b, int x, int y) {
   //WRITE ME!
+  /*
   int num_Mine = 0;
   int left_limit = 0;
   int right_limit = 0;
@@ -156,7 +157,20 @@ int countMines(board_t * b, int x, int y) {
     }
   }
   num_Mine -= b->board[y][x];
-  return num_Mine;
+  */
+  int count_num = 0;
+  for (int i = x - 1; i <= x + 1; i++) {
+    if ((i >= 0) && (i < b->width)) {
+      for (int j = y - 1; j <= y + 1; j++) {
+        if ((j >= 0) && (j < b->height)) {
+          if ((IS_MINE(b->board[j][i]))) {
+            count_num++;
+          }
+        }
+      }
+    }
+  }
+  return count_num;
 }
 
 int click(board_t * b, int x, int y) {
