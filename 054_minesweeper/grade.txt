@@ -1,18 +1,18 @@
-Grading at 09/27/2019:16:21:37.744546
-For commit ID e0d33bf2ebfcd2e37b0fc2460af2e1d0c78d2081
-Grading at Fri Sep 27 12:21:35 EDT 2019
+Grading at 09/27/2019:16:26:03.271775
+For commit ID dee28504f9ede1fa2f0f5ac5b16be0cfe2ce0e3d
+Grading at Fri Sep 27 12:25:58 EDT 2019
 Attempting to compile minesweeper.c
 #################################################
 testcase1:
-valgrind reported memory errors
+Your output is incorrect
 #################################################
 testcase2:
-valgrind reported memory errors
+Your output is incorrect
 #################################################
 testcase3:
-valgrind reported memory errors
+Your output is incorrect
 #################################################
 testcase4:
-valgrind reported memory errors
+Your output is incorrect
 
 Overall Grade: F
