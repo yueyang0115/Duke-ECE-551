@@ -41,17 +41,13 @@ void addRandomMine(board_t * b) {
 
 board_t * makeBoard(int w, int h, int numMines) {
   //WRITE ME!
-  board_t * b;
-  b = (board_t *)malloc(sizeof(board_t));
-  //board_t * b = malloc(sizeof(*b));
+  board_t * b = malloc(sizeof(*b));
   b->width = w;
   b->height = h;
   b->totalMines = numMines;
-  b->board = (int **)malloc(sizeof(int *) * h);
-  //b->board = malloc(h * sizeof(int *));
+  b->board = malloc(h * sizeof(b->board));
   for (int y = 0; y < h; y++) {
-    b->board[y] = (int *)malloc(sizeof(int) * w);
-    //b->board[y] = malloc(w * sizeof(int));
+    b->board[y] = malloc(w * sizeof(b->board[y]));
   }
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
@@ -121,43 +117,6 @@ void printBoard(board_t * b) {
 }
 int countMines(board_t * b, int x, int y) {
   //WRITE ME!
-  /*
-  int num_Mine = 0;
-  int left_limit = 0;
-  int right_limit = 0;
-  int top_limit = 0;
-  int bottom_limit = 0;
-  if (x - 1 >= 0) {
-    left_limit = x - 1;
-  }
-  else {
-    left_limit = x;
-  }
-  if (x + 1 < b->width) {
-    right_limit = x + 1;
-  }
-  else {
-    right_limit = x;
-  }
-  if (y - 1 >= 0) {
-    top_limit = y - 1;
-  }
-  else {
-    top_limit = y;
-  }
-  if (y + 1 < b->height) {
-    bottom_limit = y + 1;
-  }
-  else {
-    bottom_limit = y;
-  }
-  for (int i = left_limit; i <= right_limit; i++) {
-    for (int j = top_limit; j <= bottom_limit; j++) {
-      num_Mine += b->board[i][j];
-    }
-  }
-  num_Mine -= b->board[y][x];
-  */
   int count_num = 0;
   for (int i = x - 1; i <= x + 1; i++) {
     if ((i >= 0) && (i < b->width)) {
