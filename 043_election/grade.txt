@@ -1,6 +1,6 @@
-Grading at 09/30/2019:03:49:11.787307
-For commit ID a6293137cafa6265df00ab64712d7a66b7e9728b
-Grading at Sun Sep 29 23:49:11 EDT 2019
+Grading at 09/30/2019:04:18:36.490224
+For commit ID a25897d7ecad41cb6772193eda9e98b4cb691744
+Grading at Mon Sep 30 00:18:35 EDT 2019
 [32mfound function state_t  parseLine(const char * line)[0m
 [32mfound function unsigned int countElectoralVotes(state_t * stateData, uint64_t * voteCounts, size_t   nStates)[0m
 [32mfound function void printRecounts(state_t * stateData, uint64_t * voteCounts, size_t nStates)[0m
@@ -8,11 +8,5 @@ Grading at Sun Sep 29 23:49:11 EDT 2019
 running passed-in stu_imp ./printStates
 [32mSuccessfully compiled .[0m
 checking if there is output in parseLine and countElectoralVotes
-election.c: In function ‘parseLine’:
-election.c:42:31: error: ISO C forbids empty initializer braces [-Werror=pedantic]
-   char parse_result[10][64] = {};
-                               ^
-cc1: all warnings being treated as errors
-
-[31mError: failed to compile your code[0m
+[32mno spurious debug output in parseLine or countElectoralVotes[0m
 Overall Grade: NO GRADE YET
