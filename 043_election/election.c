@@ -39,7 +39,7 @@ void split(const char * src, char delimiter, char dest[10][64], size_t * count) 
 state_t parseLine(const char * line) {
   state_t state;
   char delim = ':';
-  char parse_result[10][64] = {};
+  char parse_result[10][64] = {{0}};
   size_t count = 0;
 
   if ((line == NULL) || (strlen(line) == 0)) {
