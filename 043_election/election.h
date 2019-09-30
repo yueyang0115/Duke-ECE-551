@@ -12,9 +12,15 @@ struct state_tag {
 };
 typedef struct state_tag state_t;
 
+void split(const char * src, char delimiter, char dest[10][64], size_t * count);
+
+size_t max(float * array, size_t nStates);
+
 state_t parseLine(const char * line);
 
-unsigned int countElectoralVotes(state_t * stateData, uint64_t * voteCounts, size_t nStates);
+unsigned int countElectoralVotes(state_t * stateData,
+                                 uint64_t * voteCounts,
+                                 size_t nStates);
 
 void printRecounts(state_t * stateData, uint64_t * voteCounts, size_t nStates);
 
