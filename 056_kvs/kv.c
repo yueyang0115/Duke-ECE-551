@@ -61,7 +61,6 @@ kvarray_t * readKVs(const char * fname) {
   kvarray_t * kvarray = malloc(sizeof(*kvarray));
   kvarray->pairdata = NULL;
   kvarray->numPairs = 0;
-  printf("begin getline\n");
   while (getline(&line, &sz, f) != -1) {
     addpair(line, kvarray);
   }
