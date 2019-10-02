@@ -11,25 +11,24 @@ kvpair_t * fillpair(const char * line, char delimiter) {
   p = strchr(p, delimiter);
   x = strchr(line, '\n');  //the last two characters are '\n''\0'
 
-  if ((p != NULL) && (x != NULL)) {
-    kvpair_t * newpair = malloc(sizeof(*newpair));
-
-    size_t key_len = p - line + 1;  //add more '\0'
-    newpair->key = malloc(key_len * sizeof(*newpair->key));
-    strncpy(newpair->key, line, key_len - 1);
-    newpair->key[key_len - 1] = '\0';
-
-    size_t value_len = x - p;
-    newpair->value = malloc(key_len * sizeof(*newpair->value));
-    strncpy(newpair->value, p + 1, value_len - 1);
-    newpair->value[value_len - 1] = '\0';
-
-    return newpair;
-  }
-  else {
+  if ((p == NULL) || (x == NULL)) {
     fprintf(stderr, "Line contains no delimiter\n");
-    return NULL;
+    exit(EXIT_FAILURE);
   }
+
+  kvpair_t * newpair = malloc(sizeof(*newpair));
+
+  size_t key_len = p - line + 1;  //add more '\0'
+  newpair->key = malloc(key_len * sizeof(*newpair->key));
+  strncpy(newpair->key, line, key_len - 1);
+  newpair->key[key_len - 1] = '\0';
+
+  size_t value_len = x - p;
+  newpair->value = malloc(value_len * sizeof(*newpair->value));
+  strncpy(newpair->value, p + 1, value_len - 1);
+  newpair->value[value_len - 1] = '\0';
+
+  return newpair;
 }
 
 void addpair(const char * line, kvarray_t * kvarray) {

@@ -1,4 +1,5 @@
 apple=red
+a=b=c
 banana=yellow
 orange=orange
 grapes=purple
