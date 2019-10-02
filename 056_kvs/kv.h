@@ -1,20 +1,21 @@
 #ifndef __KV_H__
 #define __KV_H__
 
+#include <stdlib.h>
 
-struct _kvpair_t { 
+struct _kvpair_t {
   //DEFINE ME!
-
+  char * key;
+  char * value;
 };
 typedef struct _kvpair_t kvpair_t;
 
-struct _kvarray_t { 
+struct _kvarray_t {
   //DEFINE ME!
-
-
+  kvpair_t ** pairdata;
+  size_t numPairs;
 };
 typedef struct _kvarray_t kvarray_t;
-
 
 kvarray_t * readKVs(const char * fname);
 
