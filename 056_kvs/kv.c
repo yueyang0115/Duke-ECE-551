@@ -28,7 +28,7 @@ kvpair_t * fillpair(const char * line, char delimiter) {
   }
   else {
     fprintf(stderr, "Line contains no delimiter\n");
-    exit(EXIT_FAILURE);
+    return NULL;
   }
 }
 
@@ -61,7 +61,7 @@ kvarray_t * readKVs(const char * fname) {
   kvarray_t * kvarray = malloc(sizeof(*kvarray));
   kvarray->pairdata = NULL;
   kvarray->numPairs = 0;
-  while (getline(&line, &sz, f) != -1) {
+  while (getline(&line, &sz, f) >= 0) {
     addpair(line, kvarray);
   }
   free(line);
