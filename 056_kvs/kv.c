@@ -52,23 +52,24 @@ kvarray_t * readKVs(const char * fname) {
   FILE * f = fopen(fname, "r");
   if (f == NULL) {
     fprintf(stderr, "Could not open file\n");
-    exit(EXIT_FAILURE);
+    return NULL;
   }
 
   char * line = NULL;
   size_t sz = 0;
+  ssize_t len = 0;
 
   kvarray_t * kvarray = malloc(sizeof(*kvarray));
   kvarray->pairdata = NULL;
   kvarray->numPairs = 0;
-  while (getline(&line, &sz, f) >= 0) {
+  while ((len = getline(&line, &sz, f)) >= 0) {
     addpair(line, kvarray);
   }
   free(line);
 
   if (fclose(f) != 0) {
     fprintf(stderr, "Close File Error.\n");
-    exit(EXIT_FAILURE);
+    return NULL;
   }
   return kvarray;
 }
