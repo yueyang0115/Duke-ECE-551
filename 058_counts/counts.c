@@ -48,9 +48,9 @@ void printCounts(counts_t * c, FILE * outFile) {
   if (c->numUnkonwn != 0) {
     fprintf(outFile, "<unknown> : %zd\n", c->numUnkonwn);
   }
-  if (fclose(outFile) != 0) {
+  /*if (fclose(outFile) != 0) {
     fprintf(stderr, "File closed failure\n");
-  }
+    }*/
 }
 
 void freeCounts(counts_t * c) {
