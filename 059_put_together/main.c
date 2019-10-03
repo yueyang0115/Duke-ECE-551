@@ -21,7 +21,7 @@ counts_t * countFile(const char * filename, kvarray_t * kvPairs) {
     strncpy(value, line, p - line);
     value[len] = '\0';
     addCount(counts, lookupValue(kvPairs, value));
-    value = NULL;
+    free(value);
   }
   free(line);
   if (fclose(f) != 0) {
