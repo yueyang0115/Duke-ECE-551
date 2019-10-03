@@ -42,7 +42,10 @@ int main(int argc, char ** argv) {
   //close f
   //free the memory for outName and c
   //free the memory for kv
-
+  if (argc < 3) {
+    fprintf(stderr, "Wrong input files\n");
+    exit(EXIT_FAILURE);
+  }
   kvarray_t * kv = readKVs(argv[1]);
   for (int i = 2; i < argc; i++) {
     counts_t * c = countFile(argv[i], kv);
