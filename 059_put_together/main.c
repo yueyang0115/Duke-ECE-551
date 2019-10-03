@@ -53,6 +53,9 @@ int main(int argc, char ** argv) {
     }
     free(outName);
     freeCounts(c);
+    if (fclose(f) != 0) {
+      fprintf(stderr, "File closed failure\n");
+    }
   }
   freeKVs(kv);
 
