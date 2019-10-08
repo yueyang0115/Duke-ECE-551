@@ -1,12 +1,90 @@
-Grading at 09/30/2019:05:16:21.171918
+Grading at 10/07/2019:19:14:10.753459
 For commit ID 80302e4ef4f37fc02fe77567e813fb1c5adda102
-Grading at Mon Sep 30 01:16:20 EDT 2019
-[32mfound function state_t  parseLine(const char * line)[0m
-[32mfound function unsigned int countElectoralVotes(state_t * stateData, uint64_t * voteCounts, size_t   nStates)[0m
-[32mfound function void printRecounts(state_t * stateData, uint64_t * voteCounts, size_t nStates)[0m
-[32mfound function void printLargestWin(state_t * stateData, uint64_t * voteCounts, size_t nStates)[0m
-running passed-in stu_imp ./printStates
-[32mSuccessfully compiled .[0m
-checking if there is output in parseLine and countElectoralVotes
-[32mno spurious debug output in parseLine or countElectoralVotes[0m
-Overall Grade: NO GRADE YET
+Grading at Mon Oct  7 15:13:50 EDT 2019
+election.c exists (good)
+Attempting to compile election.c
+rm -f *~ printStates printEVotes printRecounts printLargeWin
+gcc -ggdb3 -Wall -Werror -std=gnu99 election.c printStates.o -o printStates
+gcc -ggdb3 -Wall -Werror -std=gnu99 election.c printEVotes.o -o printEVotes
+gcc -ggdb3 -Wall -Werror -std=gnu99 election.c printRecounts.o -o printRecounts
+gcc -ggdb3 -Wall -Werror -std=gnu99 election.c printLargeWin.o -o printLargeWin
+#################################################
+testcase1 of step1:
+testcase1 passed [1/1]
+#################################################
+testcase2 of step1:
+testcase2 passed [1/1]
+#################################################
+testcase3 of step1:
+testcase3 passed [1/1]
+#################################################
+testcase4 of step1:
+testcase4 passed [1/1]
+#################################################
+testcase5 of step1:
+Your file matched the expected output
+testcase5 passed [10/10]
+#################################################
+testcase6 of step1:
+Difficult corner cases
+Line_52_did_not_match
+Line_53_did_not_match
+Line_54_did_not_match
+Line_55_did_not_match
+Your file did not match the expected ouput
+testcase6 failed, your output did not match with the answer [0/6]
+#################################################
+testcase1 of step2:
+Your output is correct [8/8]
+#################################################
+testcase2 of step2:
+Your output is correct [8/8]
+#################################################
+testcase3 of step2:
+Your output is correct [8/8]
+#################################################
+testcase4 of step2:
+Difficult corner cases
+Your output is correct [6/6]
+#################################################
+testcase1 of step3:
+Your output is correct [6/6]
+#################################################
+testcase2 of step3:
+Your output is correct [6/6]
+#################################################
+testcase3 of step3:
+Your output is correct [6/6]
+#################################################
+testcase4 of step3:
+Difficult corner cases
+Your output is correct [2/2]
+#################################################
+testcase1 of step4:
+Your output is correct [8/8]
+#################################################
+testcase2 of step4:
+Your output is correct [8/8]
+#################################################
+testcase3 of step4:
+Your output is correct [8/8]
+#################################################
+testcase4 of step4:
+Difficult corner cases
+Your output is correct [6/6]
+-----------------------------------
+Functionality:  94 points / 100
+------------------------------------
+Code quality:
+ - Format:      3 / 3
+ - Comments:    2 / 3
+ - Abstraction: 2 / 2
+ - Other:       1 / 2
+ Notes from your TA (Gary):
+Good formatting and abstraction. Add more comments before each function(-1).     Better to use more library functions to parse line to make your code more readable. Variable names can be more informative.(-1)
+------------------------------
+Total quality:   8 / 10
+------------------------------
+Overall grade = functionality *0.9 + quality
+
+Overall Grade: 92.6
