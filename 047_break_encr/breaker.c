@@ -23,11 +23,12 @@ void find_key(FILE * f) {
   while ((c = fgetc(f)) != EOF) {
     if ((isalpha(c))) {
       c = tolower(c);
-      for (int i = 0; i < 26; i++) {
-        if (c == i + 'a') {
-          letter[i]++;
-        }
-      }
+      letter[c - 'a']++;
+      //for (int i = 0; i < 26; i++) {
+      //if (c == i + 'a') {
+      //  letter[i]++;
+      //  }
+      //}
     }
   }
   /*for (int i = 0; i < 26; i++) {
