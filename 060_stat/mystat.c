@@ -8,10 +8,19 @@
 #include <time.h>
 #include <unistd.h>
 
-void getpermission(long st_mode, char * permission) {
-  //last character
-  permission[10] = '\0';
+//This function is for Step 4
+char * time2str(const time_t * when, long ns) {
+  char * ans = malloc(128 * sizeof(*ans));
+  char temp1[64];
+  char temp2[32];
+  const struct tm * t = localtime(when);
+  strftime(temp1, 512, "%Y-%m-%d %H:%M:%S", t);
+  strftime(temp2, 32, "%z", t);
+  snprintf(ans, 128, "%s.%09ld %s", temp1, ns, temp2);
+  return ans;
+}
 
+void getpermission(long st_mode, char * permission) {
   //first character
   switch (st_mode & S_IFMT) {
     case S_IFBLK:
@@ -40,7 +49,6 @@ void getpermission(long st_mode, char * permission) {
       fprintf(stderr, "filetype unknown\n");
       break;
   }
-
   //second character
   permission[1] = ((st_mode & S_IRUSR) != 0) ? 'r' : '-';
   //third character
@@ -59,6 +67,8 @@ void getpermission(long st_mode, char * permission) {
   permission[8] = ((st_mode & S_IWOTH) != 0) ? 'w' : '-';
   //tenth character
   permission[9] = ((st_mode & S_IXOTH) != 0) ? 'x' : '-';
+  //last character
+  permission[10] = '\0';
 }
 
 int printfstat(char * filename) {
@@ -117,21 +127,35 @@ int printfstat(char * filename) {
   //forth line
   char permission[11] = "";
   getpermission(sb.st_mode, permission);
-  printf("Access: (%04o/%s)\n", sb.st_mode & S_IFMT, permission);
+  printf("Access: (%04o/%s)", sb.st_mode & ~S_IFMT, permission);
 
-  return 0;
-}
+  struct passwd * pw;
+  pw = getpwuid(sb.st_uid);
+  printf("  Uid: (%5d/%8s)", sb.st_uid, pw->pw_name);
 
-//This function is for Step 4
-char * time2str(const time_t * when, long ns) {
-  char * ans = malloc(128 * sizeof(*ans));
-  char temp1[64];
-  char temp2[32];
-  const struct tm * t = localtime(when);
-  strftime(temp1, 512, "%Y-%m-%d %H:%M:%S", t);
-  strftime(temp2, 32, "%z", t);
-  snprintf(ans, 128, "%s.%09ld %s", temp1, ns, temp2);
-  return ans;
+  struct group * gr;
+  gr = getgrgid(sb.st_gid);
+  printf("   Gid: (%5d/%8s)\n", sb.st_gid, gr->gr_name);
+
+  //fifth line
+  char * atimestr = time2str(&sb.st_atime, sb.st_atim.tv_nsec);
+  printf("Access: %s\n", atimestr);
+  free(atimestr);
+
+  //sixth line
+  char * mtimestr = time2str(&sb.st_mtime, sb.st_mtim.tv_nsec);
+  printf("Modify: %s\n", mtimestr);
+  free(mtimestr);
+
+  //seventh line
+  char * ctimestr = time2str(&sb.st_ctime, sb.st_ctim.tv_nsec);
+  printf("Change: %s\n", ctimestr);
+  free(ctimestr);
+
+  //eighth line
+  printf(" Birth: -\n");
+
+  return 0;  //return 0 when success
 }
 
 int main(int argc, char ** argv) {
@@ -141,7 +165,10 @@ int main(int argc, char ** argv) {
   }
 
   for (int i = 1; i < argc; i++) {
-    printfstat(argv[i]);
+    if (printfstat(argv[i]) != 0) {
+      fprintf(stderr, "Failure in printfstat\n");
+      return EXIT_FAILURE;
+    }
   }
   return EXIT_SUCCESS;
 }
