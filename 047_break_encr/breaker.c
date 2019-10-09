@@ -38,6 +38,9 @@ void find_key(FILE * f) {
   //printf("max_index = %d\n", max_index);
   int key;
   key = (max_index + 26 - 4) % 26;
+  if (key < 0) {
+    key = key + 26;
+  }
   printf("%d\n", key);
 }
 
