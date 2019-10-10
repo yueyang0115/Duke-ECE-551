@@ -91,7 +91,7 @@ int printfstat(char * filename) {
       else {
         linktarget[len] = '\0';  //add null terminator
       }
-      printf("  File: ‘%s’ -> ‘%s’\n", filename, linktarget);
+      printf("  File: %s -> %s\n", filename, linktarget);
     }
     else {
       fprintf(stderr, "Failure in putting targetname in linktarget\n");
