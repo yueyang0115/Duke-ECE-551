@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
@@ -80,25 +81,42 @@ int printfstat(char * filename) {
   }
 
   //first line
-  printf("  File: %s\n", filename);
-
+  if (S_ISLNK(sb.st_mode)) {
+    char linktarget[256];
+    ssize_t len = readlink(filename, linktarget, 256);
+    if (len >= 0) {
+      if (len > 255) {
+        linktarget[255] = '\0';
+      }
+      else {
+        linktarget[len] = '\0';
+      }
+      printf("  File: ‘%s’ -> ‘%s’\n", filename, linktarget);
+    }
+    else {
+      fprintf(stderr, "Failure in putting targetname in linktarget\n");
+    }
+  }
+  else {
+    printf("  File: %s\n", filename);
+  }
   //second line
   char * filetype;
   switch (sb.st_mode & S_IFMT) {
     case S_IFBLK:
-      filetype = "block device";
+      filetype = "block special file";
       break;
     case S_IFCHR:
-      filetype = "character device";
+      filetype = "character special file";
       break;
     case S_IFDIR:
       filetype = "directory";
       break;
     case S_IFIFO:
-      filetype = "FIFO/pipe";
+      filetype = "fifo";
       break;
     case S_IFLNK:
-      filetype = "symlink";
+      filetype = "symbolic link";
       break;
     case S_IFREG:
       filetype = "regular file";
@@ -118,12 +136,22 @@ int printfstat(char * filename) {
          filetype);
 
   //third line
-  printf("Device: %lxh/%lud\tInode: %-10lu  Links: %lu\n",
-         sb.st_dev,
-         sb.st_dev,
-         sb.st_ino,
-         sb.st_nlink);
-
+  if ((S_ISCHR(sb.st_mode)) || (S_ISBLK(sb.st_mode))) {
+    printf("Device: %lxh/%lud\tInode: %-10lu  Links: %-5lu Device type: %d,%d\n",
+           sb.st_dev,
+           sb.st_dev,
+           sb.st_ino,
+           sb.st_nlink,
+           major(sb.st_rdev),
+           minor(sb.st_rdev));
+  }
+  else {
+    printf("Device: %lxh/%lud\tInode: %-10lu  Links: %lu\n",
+           sb.st_dev,
+           sb.st_dev,
+           sb.st_ino,
+           sb.st_nlink);
+  }
   //forth line
   char permission[11] = "";
   getpermission(sb.st_mode, permission);
