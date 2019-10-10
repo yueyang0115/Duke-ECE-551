@@ -21,6 +21,7 @@ char * time2str(const time_t * when, long ns) {
   return ans;
 }
 
+//This fuction takes in st_mode and a permission string, and fills it with filetype infomation
 void getpermission(long st_mode, char * permission) {
   //first character
   switch (st_mode & S_IFMT) {
@@ -69,39 +70,40 @@ void getpermission(long st_mode, char * permission) {
   //tenth character
   permission[9] = ((st_mode & S_IXOTH) != 0) ? 'x' : '-';
   //last character
-  permission[10] = '\0';
+  permission[10] = '\0';  //last character should be null terminator
 }
 
 int printfstat(char * filename) {
   struct stat sb;
-
-  if (lstat(filename, &sb) == -1) {
+  if (lstat(filename, &sb) == -1) {  //lstat return -1 when error
     fprintf(stderr, "Failure in reading stat into a struct\n");
-    exit(EXIT_FAILURE);
+    return EXIT_FAILURE;
   }
 
   //first line
-  if (S_ISLNK(sb.st_mode)) {
+  if (S_ISLNK(sb.st_mode)) {  //if the file is a link
     char linktarget[256];
     ssize_t len = readlink(filename, linktarget, 256);
-    if (len >= 0) {
+    if (len >= 0) {  //readlink return -1 when error
       if (len > 255) {
-        linktarget[255] = '\0';
+        linktarget[255] = '\0';  //add null terminator
       }
       else {
-        linktarget[len] = '\0';
+        linktarget[len] = '\0';  //add null terminator
       }
       printf("  File: ‘%s’ -> ‘%s’\n", filename, linktarget);
     }
     else {
       fprintf(stderr, "Failure in putting targetname in linktarget\n");
+      return EXIT_FAILURE;
     }
   }
   else {
     printf("  File: %s\n", filename);
   }
+
   //second line
-  char * filetype;
+  char * filetype = NULL;
   switch (sb.st_mode & S_IFMT) {
     case S_IFBLK:
       filetype = "block special file";
@@ -128,7 +130,6 @@ int printfstat(char * filename) {
       filetype = "unknown?";
       break;
   }
-
   printf("  Size: %-10lu\tBlocks: %-10lu IO Block: %-6lu %s\n",
          sb.st_size,
          sb.st_blocks,
@@ -136,7 +137,7 @@ int printfstat(char * filename) {
          filetype);
 
   //third line
-  if ((S_ISCHR(sb.st_mode)) || (S_ISBLK(sb.st_mode))) {
+  if ((S_ISCHR(sb.st_mode)) || (S_ISBLK(sb.st_mode))) {  //if the file is a device
     printf("Device: %lxh/%lud\tInode: %-10lu  Links: %-5lu Device type: %d,%d\n",
            sb.st_dev,
            sb.st_dev,
@@ -153,7 +154,7 @@ int printfstat(char * filename) {
            sb.st_nlink);
   }
   //forth line
-  char permission[11] = "";
+  char permission[11] = "";  //10 character permission plus a null terminator
   getpermission(sb.st_mode, permission);
   printf("Access: (%04o/%s)", sb.st_mode & ~S_IFMT, permission);
 
@@ -188,12 +189,12 @@ int printfstat(char * filename) {
 
 int main(int argc, char ** argv) {
   if (argc < 2) {
-    fprintf(stderr, "missing input operand\n");
+    fprintf(stderr, "Missing input operand\n");
     return EXIT_FAILURE;
   }
 
   for (int i = 1; i < argc; i++) {
-    if (printfstat(argv[i]) != 0) {
+    if (printfstat(argv[i]) != 0) {  //printstat return 0 when success
       fprintf(stderr, "Failure in printfstat\n");
       return EXIT_FAILURE;
     }
