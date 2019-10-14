@@ -1,0 +1,12 @@
+In this short assignment you will be adding
+constructor functions to the Vector2D class
+you previously defined.
+
+Your only task is to modify your class in
+vector.hpp to have two different constructors,
+described below.
+
+  1. Define the default constructor. Set both x and y to 0.
+  2. Define a constructor that takes in two arguments
+     representing the x and y coordinates of the
+     vector.
