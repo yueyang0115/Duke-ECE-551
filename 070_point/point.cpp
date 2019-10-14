@@ -8,5 +8,7 @@ void Point::move(double dx, double dy) {
   y += dy;
 }
 double Point::distanceFrom(const Point & p) {
-  return (std::sqrt)(p.x * p.x + p.y * p.y);
+  double dx = p.x - x;
+  double dy = p.y - y;
+  return (std::sqrt)(dx * dx + dy * dy);
 }
