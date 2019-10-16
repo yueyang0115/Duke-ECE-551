@@ -77,7 +77,7 @@ void getpermission(long st_mode, char * permission) {
 int printfstat(char * filename) {
   struct stat sb;
   if (lstat(filename, &sb) == -1) {  //lstat return -1 when error
-    fprintf(stderr, "Failure in reading stat into a struct\n");
+    fprintf(stderr, "Failure in reading filename into a struct\n");
     return EXIT_FAILURE;
   }
 
