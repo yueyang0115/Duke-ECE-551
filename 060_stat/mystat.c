@@ -73,6 +73,7 @@ void getpermission(long st_mode, char * permission) {
   permission[10] = '\0';  //last character should be null terminator
 }
 
+//this function takes in a filename and prints the stat message
 int printfstat(char * filename) {
   struct stat sb;
   if (lstat(filename, &sb) == -1) {  //lstat return -1 when error
@@ -153,6 +154,7 @@ int printfstat(char * filename) {
            sb.st_ino,
            sb.st_nlink);
   }
+
   //forth line
   char permission[11] = "";  //10 character permission plus a null terminator
   getpermission(sb.st_mode, permission);
