@@ -3,6 +3,7 @@
 #include <fstream>    //std::ifstream
 #include <iostream>   //std::cin std::cout std::ceer
 #include <vector>     //std::vector
+
 void sort_lines(std::istream & is) {
   std::string str;
   std::vector<std::string> lines;
@@ -21,7 +22,7 @@ void sort_lines(std::istream & is) {
   }
 }
 void sort_file(int argc, char ** argv) {
-  for (int i = 0; i < argc - 1; i++) {
+  for (int i = 1; i < argc; i++) {
     std::ifstream ifs(argv[i], std::ifstream::in);
     if (!ifs.is_open()) {
       std::cerr << "file open fails" << std::endl;

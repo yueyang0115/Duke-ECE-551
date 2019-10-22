@@ -1,0 +1,4 @@
+apple
+cat
+upper
+dog
