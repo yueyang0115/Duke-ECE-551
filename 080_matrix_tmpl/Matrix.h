@@ -126,8 +126,8 @@ std::ostream & operator<<(std::ostream & s, const Matrix<T> & rhs) {
     }
     s << "{";
     typename std::vector<T>::const_iterator it_it;
-    for (it_it = it->begin(); it_it != it->end(); ++it_it) {
-      if (it_it != it->begin()) {
+    for (it_it = (*it).begin(); it_it != (*it).end(); ++it_it) {
+      if (it_it != (*it).begin()) {
         s << ", ";
       }
       s << *it_it;
