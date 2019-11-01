@@ -49,6 +49,7 @@ template<typename T>
 LinkedList<T>::LinkedList(const LinkedList & rhs) {
   head = NULL;
   tail = NULL;
+  size = rhs.size;
   Node * s = rhs.head;
   while (s != NULL) {
     addBack(s->data);
@@ -203,6 +204,8 @@ int LinkedList<T>::getSize() const {
     mysize++;
   }
   return mysize;
+
+  //  return size;
 }
 
 #endif
