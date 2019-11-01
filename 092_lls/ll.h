@@ -5,6 +5,15 @@
 #include <cstdio>
 #include <cstdlib>
 #include <exception>
+#include <iostream>
+
+class Error : public std::exception {
+ public:
+  virtual const char * what() const throw() {
+    return "The requested item does not exist\n";
+  }
+};
+
 template<typename T>
 class LinkedList {
  private:
@@ -19,9 +28,6 @@ class LinkedList {
   Node * head;
   Node * tail;
   int size;
-  class error : public std::exception {
-    const char * what() { return "requested item does not exist"; }
-  };
 
  public:
   LinkedList() : head(NULL), tail(NULL), size(0){};
@@ -74,6 +80,7 @@ LinkedList<T>::~LinkedList() {
     delete head;
     head = temp;
   }
+  head = NULL;
   tail = NULL;
   size = 0;
 }
@@ -151,7 +158,7 @@ T & LinkedList<T>::operator[](int index) {
     i--;
   }
   if (p == NULL) {
-    throw error();
+    throw Error();
   }
   return p->data;
 }
@@ -166,7 +173,7 @@ const T & LinkedList<T>::operator[](int index) const {
     i--;
   }
   if (p == NULL) {
-    throw error();
+    throw Error();
   }
   return p->data;
 }
@@ -191,7 +198,11 @@ int LinkedList<T>::find(const T & item) {
 //getsize
 template<typename T>
 int LinkedList<T>::getSize() const {
-  return size;
+  int mysize = 0;
+  for (Node * p = head; p != NULL; p = p->next) {
+    mysize++;
+  }
+  return mysize;
 }
 
 #endif
