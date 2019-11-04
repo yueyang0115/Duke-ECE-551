@@ -204,8 +204,7 @@ int LinkedList<T>::getSize() const {
     mysize++;
   }
   return mysize;
-
-  //  return size;
+  // return size;
 }
 
 #endif
