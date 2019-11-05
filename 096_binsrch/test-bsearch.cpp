@@ -49,9 +49,13 @@ void check(Function<int, int> * f,
   }
   CountedIntFn * wrap_func = new CountedIntFn(max_invoke, f, mesg);
   int ans = binarySearchForZero(wrap_func, low, high);
+  delete wrap_func;
   if (ans != expected_ans) {
     fprintf(stderr, "answer is wrong\n");
     exit(EXIT_FAILURE);
+  }
+  if (ans == expected_ans) {
+    printf("testcase success\n");
   }
 }
 

@@ -3,7 +3,7 @@ int binarySearchForZero(Function<int, int> * f, int low, int high) {
   high = high - 1;
   int mid;
   int guess;
-  while (low < high) {
+  while (low <= high) {
     mid = (low + high) / 2;
     guess = f->invoke(mid);
     if (guess == 0) {
