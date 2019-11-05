@@ -7,7 +7,7 @@ int binarySearchForZero(Function<int, int> * f, int low, int high) {
     mid = (low + high) / 2;
     guess = f->invoke(mid);
     if (guess == 0) {
-      return 0;
+      return mid;
     }
     if (guess > 0) {
       high = mid - 1;

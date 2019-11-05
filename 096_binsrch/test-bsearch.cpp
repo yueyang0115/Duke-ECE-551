@@ -49,15 +49,23 @@ void check(Function<int, int> * f,
   }
   CountedIntFn * wrap_func = new CountedIntFn(max_invoke, f, mesg);
   int ans = binarySearchForZero(wrap_func, low, high);
-  assert(ans == expected_ans);
+  if (ans != expected_ans) {
+    fprintf(stderr, "answer is wrong\n");
+    exit(EXIT_FAILURE);
+  }
 }
 
 int main(void) {
   Function_xy * myfunc = new Function_xy();
+  printf("checking normal\n");
   check(myfunc, -1, 4, 0, "normal\n");
+  printf("checking negative\n");
   check(myfunc, -4, -1, -2, "all negative\n");
+  printf("checking positive\n");
   check(myfunc, 1, 4, 1, "all positive\n");
+  printf("checking inclusive zero\n");
   check(myfunc, 0, 3, 0, "inclusive zero\n");
+  printf("checking exclusive zero\n");
   check(myfunc, -4, 0, -1, "exclusive zero\n");
   delete myfunc;
   return EXIT_SUCCESS;
