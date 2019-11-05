@@ -1,5 +1,11 @@
+#include <cstdlib>
+
 #include "function.h"
+
 int binarySearchForZero(Function<int, int> * f, int low, int high) {
+  if (low > high) {
+    exit(EXIT_FAILURE);
+  }
   if (low == high) {
     return low;
   }
