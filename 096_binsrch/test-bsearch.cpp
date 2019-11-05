@@ -71,6 +71,8 @@ int main(void) {
   check(myfunc, 0, 3, 0, "inclusive zero\n");
   printf("checking exclusive zero\n");
   check(myfunc, -4, 0, -1, "exclusive zero\n");
+  printf("checking low equals to high\n");
+  check(myfunc, -2, -2, -2, "low equals high\n");
   delete myfunc;
   return EXIT_SUCCESS;
 }
