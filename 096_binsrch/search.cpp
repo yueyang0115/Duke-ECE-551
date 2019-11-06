@@ -19,7 +19,7 @@ int binarySearchForZero(Function<int, int> * f, int low, int high) {
   high = high - 1;
   int mid;
   int guess;
-  while (low < high) {
+  while (low <= high) {
     mid = (low + high) / 2;
     printf("mid=%d\n", mid);
     guess = f->invoke(mid);
@@ -35,6 +35,9 @@ int binarySearchForZero(Function<int, int> * f, int low, int high) {
       low = mid + 1;
       printf("low=%d\n", low);
     }
+  }
+  if (guess > 0) {
+    return mid - 1;
   }
   return mid;
 }
