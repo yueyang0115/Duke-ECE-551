@@ -7,7 +7,7 @@ int binarySearchForZero(Function<int, int> * f, int low, int high) {
   if (low > high) {
     exit(EXIT_FAILURE);
   }
-  if (low == high - 1) {
+  if (low == high) {
     return low;
   }
   if (f->invoke(low) >= 0) {
