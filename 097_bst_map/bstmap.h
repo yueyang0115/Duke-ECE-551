@@ -1,11 +1,13 @@
 #include <cstdio>
 #include <cstdlib>
+#include <exception>
+#include <stdexcept>
 
 #include "map.h"
 
 template<typename K, typename V>
 class BstMap : public Map<K, V> {
- private:
+ public:
   class Node {
    public:
     K key;
@@ -13,7 +15,7 @@ class BstMap : public Map<K, V> {
     Node * left;
     Node * right;
     Node() : left(NULL), right(NULL){};
-    Node(const K & k, const V & v) : key(k), value(v), left(NULL), right(NULL){};
+    Node(const K k, const V v) : key(k), value(v), left(NULL), right(NULL){};
   };
   Node * root;
 
@@ -27,7 +29,7 @@ class BstMap : public Map<K, V> {
   virtual void remove(const K & key);
   //virtual ~Map<K, V>();
   Node * copy(Node * current);
-  Node * addnode(Node * current, const K key, const V value);
+  Node * addnode(Node * current, const K & key, const V & value);
   void destroy(Node * current);
   Node * similar(Node * current);
 };
@@ -54,9 +56,10 @@ template<typename K, typename V>
 BstMap<K, V> & BstMap<K, V>::operator=(const BstMap & rhs) {
   if (this != &rhs) {
     BstMap<K, V> tmp(rhs);
-    Node * original_root = root;
-    root = tmp.root;
-    tmp.root = original_root;
+    std::swap(root, tmp.root);
+    //Node * original_root = root;
+    //root = tmp.root;
+    //tmp.root = original_root;
   }
   return *this;
 }
@@ -85,8 +88,8 @@ void BstMap<K, V>::add(const K & key, const V & value) {
 //add helper function
 template<typename K, typename V>
 typename BstMap<K, V>::Node * BstMap<K, V>::addnode(Node * current,
-                                                    const K key,
-                                                    const V value) {
+                                                    const K & key,
+                                                    const V & value) {
   if (current == NULL) {
     Node * ans = new Node(key, value);
     return ans;
@@ -94,6 +97,7 @@ typename BstMap<K, V>::Node * BstMap<K, V>::addnode(Node * current,
   else {
     if (key == current->key) {
       current->value = value;
+      return current;
     }
     else if (key < current->key) {
       current->left = addnode(current->left, key, value);
@@ -111,7 +115,8 @@ const V & BstMap<K, V>::lookup(const K & key) const throw(std::invalid_argument)
   Node * current = root;
   while (current != NULL) {
     if (key == current->key) {
-      return current->value;
+      break;
+      //return current->value;
     }
     else if (key < current->key) {
       current = current->left;
@@ -120,7 +125,11 @@ const V & BstMap<K, V>::lookup(const K & key) const throw(std::invalid_argument)
       current = current->right;
     }
   }
-  throw std::invalid_argument("key not find\n");
+
+  if (current == NULL) {
+    throw std::invalid_argument("key not find\n");
+  }
+  return current->value;
 }
 
 //remove
