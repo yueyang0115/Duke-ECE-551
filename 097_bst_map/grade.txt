@@ -1,554 +1,68 @@
-Grading at 11/08/2019:16:48:07.750709
-For commit ID f211885afffef4841c928fdd590f4aa1351b8eea
-Grading at Fri Nov  8 11:47:57 EST 2019
+Grading at 11/08/2019:17:14:04.667594
+For commit ID 2a270688f1d72a3dfb66fe3826aac86f60b25abb
+Grading at Fri Nov  8 12:13:54 EST 2019
 -----------------------------------------------
 testcase 1 : Testing with BstMap<int,int>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104158== Memcheck, a memory error detector
-==104158== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104158== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104158== Command: ./test.1
-==104158== Parent PID: 104157
-==104158== 
-==104158== Conditional jump or move depends on uninitialised value(s)
-==104158==    at 0x10AA7C: BstMap<int, int>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158==    by 0x109902: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158== 
-==104158== Conditional jump or move depends on uninitialised value(s)
-==104158==    at 0x10AAD1: BstMap<int, int>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158==    by 0x109902: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158== 
-==104158== 
-==104158== Process terminating with default action of signal 6 (SIGABRT)
-==104158==    at 0x541BE97: raise (raise.c:51)
-==104158==    by 0x541D800: abort (abort.c:79)
-==104158==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104158==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104158==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104158==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104158==    by 0x10AB42: BstMap<int, int>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158==    by 0x109902: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158== 
-==104158== HEAP SUMMARY:
-==104158==     in use at exit: 1,390 bytes in 53 blocks
-==104158==   total heap usage: 105 allocs, 52 frees, 82,614 bytes allocated
-==104158== 
-==104158== 144 bytes in 1 blocks are possibly lost in loss record 42 of 44
-==104158==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104158==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104158==    by 0x10AADC: BstMap<int, int>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158==    by 0x109902: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158== 
-==104158== 600 (24 direct, 576 indirect) bytes in 1 blocks are definitely lost in loss record 44 of 44
-==104158==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104158==    by 0x10A8A2: BstMap<int, int>::copy(BstMap<int, int>::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158==    by 0x10A537: BstMap<int, int>::BstMap(BstMap<int, int> const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158==    by 0x109872: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.1)
-==104158== 
-==104158== LEAK SUMMARY:
-==104158==    definitely lost: 24 bytes in 1 blocks
-==104158==    indirectly lost: 576 bytes in 24 blocks
-==104158==      possibly lost: 144 bytes in 1 blocks
-==104158==    still reachable: 646 bytes in 27 blocks
-==104158==                       of which reachable via heuristic:
-==104158==                         stdstring          : 38 bytes in 1 blocks
-==104158==         suppressed: 0 bytes in 0 blocks
-==104158== Reachable blocks (those to which a pointer was found) are not shown.
-==104158== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104158== 
-==104158== For counts of detected and suppressed errors, rerun with: -v
-==104158== Use --track-origins=yes to see where uninitialised values come from
-==104158== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 2 : Testing with BstMap<int,std::string>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104184== Memcheck, a memory error detector
-==104184== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104184== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104184== Command: ./test.2
-==104184== Parent PID: 104183
-==104184== 
-==104184== Conditional jump or move depends on uninitialised value(s)
-==104184==    at 0x10ADA6: BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184== 
-==104184== Conditional jump or move depends on uninitialised value(s)
-==104184==    at 0x10ADFB: BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184== 
-==104184== 
-==104184== Process terminating with default action of signal 6 (SIGABRT)
-==104184==    at 0x541BE97: raise (raise.c:51)
-==104184==    by 0x541D800: abort (abort.c:79)
-==104184==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104184==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104184==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104184==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104184==    by 0x10AE6C: BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184== 
-==104184== HEAP SUMMARY:
-==104184==     in use at exit: 3,735 bytes in 92 blocks
-==104184==   total heap usage: 225 allocs, 133 frees, 86,614 bytes allocated
-==104184== 
-==104184== 144 bytes in 1 blocks are possibly lost in loss record 63 of 68
-==104184==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104184==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104184==    by 0x10AE06: BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184== 
-==104184== 1,800 (56 direct, 1,744 indirect) bytes in 1 blocks are definitely lost in loss record 68 of 68
-==104184==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104184==    by 0x10AB23: BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::copy(BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184==    by 0x10A789: BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::BstMap(BstMap<int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184==    by 0x10990F: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.2)
-==104184== 
-==104184== LEAK SUMMARY:
-==104184==    definitely lost: 56 bytes in 1 blocks
-==104184==    indirectly lost: 1,744 bytes in 44 blocks
-==104184==      possibly lost: 144 bytes in 1 blocks
-==104184==    still reachable: 1,791 bytes in 46 blocks
-==104184==                       of which reachable via heuristic:
-==104184==                         stdstring          : 38 bytes in 1 blocks
-==104184==         suppressed: 0 bytes in 0 blocks
-==104184== Reachable blocks (those to which a pointer was found) are not shown.
-==104184== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104184== 
-==104184== For counts of detected and suppressed errors, rerun with: -v
-==104184== Use --track-origins=yes to see where uninitialised values come from
-==104184== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 3 : Testing with BstMap<int,(a custom class we wrote)>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104204== Memcheck, a memory error detector
-==104204== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104204== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104204== Command: ./test.3
-==104204== Parent PID: 104203
-==104204== 
-==104204== Conditional jump or move depends on uninitialised value(s)
-==104204==    at 0x10AE3E: BstMap<int, Tester>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204== 
-==104204== Conditional jump or move depends on uninitialised value(s)
-==104204==    at 0x10AE93: BstMap<int, Tester>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204== 
-==104204== 
-==104204== Process terminating with default action of signal 6 (SIGABRT)
-==104204==    at 0x541BE97: raise (raise.c:51)
-==104204==    by 0x541D800: abort (abort.c:79)
-==104204==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104204==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104204==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104204==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104204==    by 0x10AF04: BstMap<int, Tester>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204== 
-==104204== HEAP SUMMARY:
-==104204==     in use at exit: 4,127 bytes in 92 blocks
-==104204==   total heap usage: 245 allocs, 153 frees, 87,414 bytes allocated
-==104204== 
-==104204== 144 bytes in 1 blocks are possibly lost in loss record 61 of 66
-==104204==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104204==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104204==    by 0x10AE9E: BstMap<int, Tester>::remove(int const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204==    by 0x1099AE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204== 
-==104204== 2,000 (64 direct, 1,936 indirect) bytes in 1 blocks are definitely lost in loss record 66 of 66
-==104204==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104204==    by 0x10AB7D: BstMap<int, Tester>::copy(BstMap<int, Tester>::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204==    by 0x10A7E3: BstMap<int, Tester>::BstMap(BstMap<int, Tester> const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204==    by 0x10990F: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.3)
-==104204== 
-==104204== LEAK SUMMARY:
-==104204==    definitely lost: 64 bytes in 1 blocks
-==104204==    indirectly lost: 1,936 bytes in 44 blocks
-==104204==      possibly lost: 144 bytes in 1 blocks
-==104204==    still reachable: 1,983 bytes in 46 blocks
-==104204==                       of which reachable via heuristic:
-==104204==                         stdstring          : 38 bytes in 1 blocks
-==104204==         suppressed: 0 bytes in 0 blocks
-==104204== Reachable blocks (those to which a pointer was found) are not shown.
-==104204== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104204== 
-==104204== For counts of detected and suppressed errors, rerun with: -v
-==104204== Use --track-origins=yes to see where uninitialised values come from
-==104204== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 4 : Testing with BstMap<std::string,int>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104215== Memcheck, a memory error detector
-==104215== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104215== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104215== Command: ./test.4
-==104215== Parent PID: 104214
-==104215== 
-==104215== Conditional jump or move depends on uninitialised value(s)
-==104215==    at 0x10AF40: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215==    by 0x109B70: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215== 
-==104215== Conditional jump or move depends on uninitialised value(s)
-==104215==    at 0x10AFA9: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215==    by 0x109B70: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215== 
-==104215== 
-==104215== Process terminating with default action of signal 6 (SIGABRT)
-==104215==    at 0x541BE97: raise (raise.c:51)
-==104215==    by 0x541D800: abort (abort.c:79)
-==104215==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104215==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104215==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104215==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104215==    by 0x10B01A: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215==    by 0x109B70: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215== 
-==104215== HEAP SUMMARY:
-==104215==     in use at exit: 2,958 bytes in 53 blocks
-==104215==   total heap usage: 105 allocs, 52 frees, 84,214 bytes allocated
-==104215== 
-==104215== 144 bytes in 1 blocks are possibly lost in loss record 52 of 53
-==104215==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104215==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104215==    by 0x10AFB4: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215==    by 0x109B70: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215== 
-==104215== 1,400 (56 direct, 1,344 indirect) bytes in 1 blocks are definitely lost in loss record 53 of 53
-==104215==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104215==    by 0x10AC99: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>::copy(BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215==    by 0x10A8F5: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>::BstMap(BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215==    by 0x109AD1: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.4)
-==104215== 
-==104215== LEAK SUMMARY:
-==104215==    definitely lost: 56 bytes in 1 blocks
-==104215==    indirectly lost: 1,344 bytes in 24 blocks
-==104215==      possibly lost: 144 bytes in 1 blocks
-==104215==    still reachable: 1,414 bytes in 27 blocks
-==104215==                       of which reachable via heuristic:
-==104215==                         stdstring          : 38 bytes in 1 blocks
-==104215==         suppressed: 0 bytes in 0 blocks
-==104215== Reachable blocks (those to which a pointer was found) are not shown.
-==104215== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104215== 
-==104215== For counts of detected and suppressed errors, rerun with: -v
-==104215== Use --track-origins=yes to see where uninitialised values come from
-==104215== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 5 : Testing with BstMap<std::string,std::string>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104245== Memcheck, a memory error detector
-==104245== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104245== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104245== Command: ./test.5
-==104245== Parent PID: 104244
-==104245== 
-==104245== Conditional jump or move depends on uninitialised value(s)
-==104245==    at 0x10B18A: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245== 
-==104245== Conditional jump or move depends on uninitialised value(s)
-==104245==    at 0x10B1F9: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245== 
-==104245== 
-==104245== Process terminating with default action of signal 6 (SIGABRT)
-==104245==    at 0x541BE97: raise (raise.c:51)
-==104245==    by 0x541D800: abort (abort.c:79)
-==104245==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104245==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104245==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104245==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104245==    by 0x10B273: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245== 
-==104245== HEAP SUMMARY:
-==104245==     in use at exit: 4,911 bytes in 92 blocks
-==104245==   total heap usage: 225 allocs, 133 frees, 87,814 bytes allocated
-==104245== 
-==104245== 144 bytes in 1 blocks are possibly lost in loss record 91 of 92
-==104245==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104245==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104245==    by 0x10B204: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245== 
-==104245== 2,400 (80 direct, 2,320 indirect) bytes in 1 blocks are definitely lost in loss record 92 of 92
-==104245==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104245==    by 0x10AE55: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::copy(BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245==    by 0x10AA85: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::BstMap(BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245==    by 0x109AEE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.5)
-==104245== 
-==104245== LEAK SUMMARY:
-==104245==    definitely lost: 80 bytes in 1 blocks
-==104245==    indirectly lost: 2,320 bytes in 44 blocks
-==104245==      possibly lost: 144 bytes in 1 blocks
-==104245==    still reachable: 2,367 bytes in 46 blocks
-==104245==                       of which reachable via heuristic:
-==104245==                         stdstring          : 38 bytes in 1 blocks
-==104245==         suppressed: 0 bytes in 0 blocks
-==104245== Reachable blocks (those to which a pointer was found) are not shown.
-==104245== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104245== 
-==104245== For counts of detected and suppressed errors, rerun with: -v
-==104245== Use --track-origins=yes to see where uninitialised values come from
-==104245== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 6 : Testing with BstMap<std::string,(a custom class we wrote)>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104268== Memcheck, a memory error detector
-==104268== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104268== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104268== Command: ./test.6
-==104268== Parent PID: 104267
-==104268== 
-==104268== Conditional jump or move depends on uninitialised value(s)
-==104268==    at 0x10B222: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268== 
-==104268== Conditional jump or move depends on uninitialised value(s)
-==104268==    at 0x10B291: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268== 
-==104268== 
-==104268== Process terminating with default action of signal 6 (SIGABRT)
-==104268==    at 0x541BE97: raise (raise.c:51)
-==104268==    by 0x541D800: abort (abort.c:79)
-==104268==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104268==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104268==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104268==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104268==    by 0x10B30B: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268== 
-==104268== HEAP SUMMARY:
-==104268==     in use at exit: 5,303 bytes in 92 blocks
-==104268==   total heap usage: 245 allocs, 153 frees, 88,614 bytes allocated
-==104268== 
-==104268== 144 bytes in 1 blocks are possibly lost in loss record 91 of 92
-==104268==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104268==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104268==    by 0x10B29C: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester>::remove(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268==    by 0x109B8D: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268== 
-==104268== 2,600 (88 direct, 2,512 indirect) bytes in 1 blocks are definitely lost in loss record 92 of 92
-==104268==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104268==    by 0x10AEAF: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester>::copy(BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester>::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268==    by 0x10AADF: BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester>::BstMap(BstMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Tester> const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268==    by 0x109AEE: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.6)
-==104268== 
-==104268== LEAK SUMMARY:
-==104268==    definitely lost: 88 bytes in 1 blocks
-==104268==    indirectly lost: 2,512 bytes in 44 blocks
-==104268==      possibly lost: 144 bytes in 1 blocks
-==104268==    still reachable: 2,559 bytes in 46 blocks
-==104268==                       of which reachable via heuristic:
-==104268==                         stdstring          : 38 bytes in 1 blocks
-==104268==         suppressed: 0 bytes in 0 blocks
-==104268== Reachable blocks (those to which a pointer was found) are not shown.
-==104268== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104268== 
-==104268== For counts of detected and suppressed errors, rerun with: -v
-==104268== Use --track-origins=yes to see where uninitialised values come from
-==104268== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 7 : Testing with BstMap<(a custom class we wrote),int>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104292== Memcheck, a memory error detector
-==104292== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104292== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104292== Command: ./test.7
-==104292== Parent PID: 104291
-==104292== 
-==104292== Conditional jump or move depends on uninitialised value(s)
-==104292==    at 0x10AF8E: BstMap<Tester, int>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292==    by 0x109AE0: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292== 
-==104292== Conditional jump or move depends on uninitialised value(s)
-==104292==    at 0x10AFF7: BstMap<Tester, int>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292==    by 0x109AE0: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292== 
-==104292== 
-==104292== Process terminating with default action of signal 6 (SIGABRT)
-==104292==    at 0x541BE97: raise (raise.c:51)
-==104292==    by 0x541D800: abort (abort.c:79)
-==104292==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104292==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104292==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104292==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104292==    by 0x10B068: BstMap<Tester, int>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292==    by 0x109AE0: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292== 
-==104292== HEAP SUMMARY:
-==104292==     in use at exit: 3,350 bytes in 53 blocks
-==104292==   total heap usage: 105 allocs, 52 frees, 84,614 bytes allocated
-==104292== 
-==104292== 144 bytes in 1 blocks are possibly lost in loss record 41 of 44
-==104292==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104292==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104292==    by 0x10B002: BstMap<Tester, int>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292==    by 0x109AE0: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292== 
-==104292== 1,600 (64 direct, 1,536 indirect) bytes in 1 blocks are definitely lost in loss record 44 of 44
-==104292==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104292==    by 0x10ACD1: BstMap<Tester, int>::copy(BstMap<Tester, int>::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292==    by 0x10A92D: BstMap<Tester, int>::BstMap(BstMap<Tester, int> const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292==    by 0x109A41: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.7)
-==104292== 
-==104292== LEAK SUMMARY:
-==104292==    definitely lost: 64 bytes in 1 blocks
-==104292==    indirectly lost: 1,536 bytes in 24 blocks
-==104292==      possibly lost: 144 bytes in 1 blocks
-==104292==    still reachable: 1,606 bytes in 27 blocks
-==104292==                       of which reachable via heuristic:
-==104292==                         stdstring          : 38 bytes in 1 blocks
-==104292==         suppressed: 0 bytes in 0 blocks
-==104292== Reachable blocks (those to which a pointer was found) are not shown.
-==104292== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104292== 
-==104292== For counts of detected and suppressed errors, rerun with: -v
-==104292== Use --track-origins=yes to see where uninitialised values come from
-==104292== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 8 : Testing with BstMap<(a custom class we wrote),std::string>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104321== Memcheck, a memory error detector
-==104321== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104321== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104321== Command: ./test.8
-==104321== Parent PID: 104320
-==104321== 
-==104321== Conditional jump or move depends on uninitialised value(s)
-==104321==    at 0x10B1D8: BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321==    by 0x109AFD: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321== 
-==104321== Conditional jump or move depends on uninitialised value(s)
-==104321==    at 0x10B247: BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321==    by 0x109AFD: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321== 
-==104321== 
-==104321== Process terminating with default action of signal 6 (SIGABRT)
-==104321==    at 0x541BE97: raise (raise.c:51)
-==104321==    by 0x541D800: abort (abort.c:79)
-==104321==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104321==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104321==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104321==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104321==    by 0x10B2C1: BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321==    by 0x109AFD: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321== 
-==104321== HEAP SUMMARY:
-==104321==     in use at exit: 5,303 bytes in 92 blocks
-==104321==   total heap usage: 225 allocs, 133 frees, 88,214 bytes allocated
-==104321== 
-==104321== 144 bytes in 1 blocks are possibly lost in loss record 63 of 68
-==104321==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104321==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104321==    by 0x10B252: BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321==    by 0x109AFD: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321== 
-==104321== 2,600 (88 direct, 2,512 indirect) bytes in 1 blocks are definitely lost in loss record 68 of 68
-==104321==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104321==    by 0x10AE8D: BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::copy(BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321==    by 0x10AABD: BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::BstMap(BstMap<Tester, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321==    by 0x109A5E: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.8)
-==104321== 
-==104321== LEAK SUMMARY:
-==104321==    definitely lost: 88 bytes in 1 blocks
-==104321==    indirectly lost: 2,512 bytes in 44 blocks
-==104321==      possibly lost: 144 bytes in 1 blocks
-==104321==    still reachable: 2,559 bytes in 46 blocks
-==104321==                       of which reachable via heuristic:
-==104321==                         stdstring          : 38 bytes in 1 blocks
-==104321==         suppressed: 0 bytes in 0 blocks
-==104321== Reachable blocks (those to which a pointer was found) are not shown.
-==104321== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104321== 
-==104321== For counts of detected and suppressed errors, rerun with: -v
-==104321== Use --track-origins=yes to see where uninitialised values come from
-==104321== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 9 : Testing with BstMap<(a custom class we wrote),(a custom class we wrote)>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
-==104348== Memcheck, a memory error detector
-==104348== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==104348== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==104348== Command: ./test.9
-==104348== Parent PID: 104347
-==104348== 
-==104348== Conditional jump or move depends on uninitialised value(s)
-==104348==    at 0x10B202: BstMap<Tester, Tester>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348==    by 0x109B0F: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348== 
-==104348== Conditional jump or move depends on uninitialised value(s)
-==104348==    at 0x10B289: BstMap<Tester, Tester>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348==    by 0x109B0F: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348== 
-==104348== 
-==104348== Process terminating with default action of signal 6 (SIGABRT)
-==104348==    at 0x541BE97: raise (raise.c:51)
-==104348==    by 0x541D800: abort (abort.c:79)
-==104348==    by 0x4EC8956: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104348==    by 0x4ECEAB5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104348==    by 0x4ECEAF0: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104348==    by 0x4ECED23: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104348==    by 0x10B303: BstMap<Tester, Tester>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348==    by 0x109B0F: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348== 
-==104348== HEAP SUMMARY:
-==104348==     in use at exit: 5,695 bytes in 92 blocks
-==104348==   total heap usage: 245 allocs, 153 frees, 89,014 bytes allocated
-==104348== 
-==104348== 144 bytes in 1 blocks are possibly lost in loss record 61 of 66
-==104348==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104348==    by 0x4ECD8EF: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
-==104348==    by 0x10B294: BstMap<Tester, Tester>::remove(Tester const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348==    by 0x109B0F: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348== 
-==104348== 2,800 (96 direct, 2,704 indirect) bytes in 1 blocks are definitely lost in loss record 66 of 66
-==104348==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==104348==    by 0x10AEA2: BstMap<Tester, Tester>::copy(BstMap<Tester, Tester>::Node*) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348==    by 0x10AACF: BstMap<Tester, Tester>::BstMap(BstMap<Tester, Tester> const&) (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348==    by 0x109A70: main (in /home/ece551db/graderbase/work/yy258.097_bst_map.6rfUXP/test.9)
-==104348== 
-==104348== LEAK SUMMARY:
-==104348==    definitely lost: 96 bytes in 1 blocks
-==104348==    indirectly lost: 2,704 bytes in 44 blocks
-==104348==      possibly lost: 144 bytes in 1 blocks
-==104348==    still reachable: 2,751 bytes in 46 blocks
-==104348==                       of which reachable via heuristic:
-==104348==                         stdstring          : 38 bytes in 1 blocks
-==104348==         suppressed: 0 bytes in 0 blocks
-==104348== Reachable blocks (those to which a pointer was found) are not shown.
-==104348== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==104348== 
-==104348== For counts of detected and suppressed errors, rerun with: -v
-==104348== Use --track-origins=yes to see where uninitialised values come from
-==104348== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 
-Overall Grade: F
+Overall Grade: A
