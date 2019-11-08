@@ -38,7 +38,7 @@ class BstMap : public Map<K, V> {
 //copy constructor
 template<typename K, typename V>
 BstMap<K, V>::BstMap(const BstMap & rhs) {
-  copy(rhs.root);
+  root = copy(rhs.root);
 }
 //copy helper function
 template<typename K, typename V>
