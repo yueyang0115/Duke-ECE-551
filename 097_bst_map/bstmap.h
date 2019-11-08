@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <exception>
+#include <iostream>
 #include <stdexcept>
 
 #include "map.h"
@@ -27,8 +28,8 @@ class BstMap : public Map<K, V> {
   virtual void add(const K & key, const V & value);
   virtual const V & lookup(const K & key) const throw(std::invalid_argument);
   virtual void remove(const K & key);
-  //virtual ~Map<K, V>();
   Node * copy(Node * current);
+  //void copy(Node * current);
   Node * addnode(Node * current, const K & key, const V & value);
   void destroy(Node * current);
   Node * similar(Node * current);
@@ -37,7 +38,7 @@ class BstMap : public Map<K, V> {
 //copy constructor
 template<typename K, typename V>
 BstMap<K, V>::BstMap(const BstMap & rhs) {
-  root = copy(rhs.root);
+  copy(rhs.root);
 }
 //copy helper function
 template<typename K, typename V>
@@ -155,19 +156,26 @@ void BstMap<K, V>::remove(const K & key) {
     delete (*current);
     *current = temp;
   }
-  if ((*current)->right == NULL) {
+  else if ((*current)->right == NULL) {
     Node * temp = (*current)->left;
     delete (*current);
     *current = temp;
   }
   else {
-    Node * similarnode = similar((*current)->left);
-    (*current)->key = similarnode->key;
-    (*current)->value = similarnode->value;
-    remove(similarnode->key);
+    Node * findnode = (*current)->left;
+    while (findnode->right != NULL) {
+      findnode = findnode->right;
+    }
+    //Node * similarnode = similar((*current)->left);
+    K tempkey = findnode->key;
+    V tempvalue = findnode->value;
+    remove(findnode->key);
+    (*current)->key = tempkey;
+    (*current)->value = tempvalue;
   }
 }
 
+/*
 //find similar pass in current->left only need to go right
 template<typename K, typename V>
 typename BstMap<K, V>::Node * BstMap<K, V>::similar(Node * current) {
@@ -176,3 +184,4 @@ typename BstMap<K, V>::Node * BstMap<K, V>::similar(Node * current) {
   }
   return current;
 }
+*/
