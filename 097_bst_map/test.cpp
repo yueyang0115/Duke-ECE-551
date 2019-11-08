@@ -27,13 +27,14 @@ int main(void) {
     std::cout << "Lookup key is: " << 25 << " value is: " << map.lookup(25) << std::endl;
     std::cout << "Lookup key is: " << 60 << " value is: " << map.lookup(60) << std::endl;
 
-    map.remove(11);
-    map.remove(19);
+    map.remove(8);
+    //map.remove(19);
+    // map.remove(19);
     //map.remove(70);
     // map.remove(35);
 
     //map.printing();
-    std::cout << "Lookup key is:" << 19 << " value is: " << map.lookup(35) << std::endl;
+    std::cout << "Lookup key is:" << 86 << " value is: " << map.lookup(86) << std::endl;
   }
   catch (std::exception & e) {
     std::cerr << e.what() << std::endl;

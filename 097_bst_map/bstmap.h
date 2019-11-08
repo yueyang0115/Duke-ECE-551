@@ -149,7 +149,8 @@ void BstMap<K, V>::remove(const K & key) {
     }
   }
   if (*current == NULL) {
-    throw std::invalid_argument("key not find\n");
+    return;
+    //throw std::invalid_argument("key not find\n");
   }
   if ((*current)->left == NULL) {
     Node * temp = (*current)->right;
