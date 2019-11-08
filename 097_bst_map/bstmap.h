@@ -32,7 +32,7 @@ class BstMap : public Map<K, V> {
   //void copy(Node * current);
   Node * addnode(Node * current, const K & key, const V & value);
   void destroy(Node * current);
-  Node * similar(Node * current);
+  //Node * similar(Node * current) const;
 };
 
 //copy constructor
@@ -149,8 +149,8 @@ void BstMap<K, V>::remove(const K & key) {
     }
   }
   if (*current == NULL) {
-    return;
-    //throw std::invalid_argument("key not find\n");
+    //return;
+    throw std::invalid_argument("key not find\n");
   }
   if ((*current)->left == NULL) {
     Node * temp = (*current)->right;
@@ -179,10 +179,9 @@ void BstMap<K, V>::remove(const K & key) {
 /*
 //find similar pass in current->left only need to go right
 template<typename K, typename V>
-typename BstMap<K, V>::Node * BstMap<K, V>::similar(Node * current) {
+typename BstMap<K, V>::Node * BstMap<K, V>::similar(Node * current) const {
   while (current->right != NULL) {
     current = current->right;
   }
   return current;
-}
-*/
+  }*/
