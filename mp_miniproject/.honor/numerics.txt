@@ -1,0 +1,292 @@
+Mini-Project Option: Numerical Methods
+======================================
+
+For this option, you will be using some numerical methods
+to integrate and optimize functions.
+
+
+Step 1: Parsing functions
+-------------------------
+
+  You will write a program "numerics", which reads commands from
+  standard input.
+
+  To start with, there are two commands: define and test, which
+  look like this:  
+    define (f x y z) = (+ (* x y) (- z 3))
+    test (f 3 4.2 5) 14.6
+    test (f -1 9.2 6) -6.2
+  For this input, your program should print:
+    defined f(x y z)
+    f(3 4.2 5) = 14.6 [correct]
+    f(-1 9.2 6) = -6.2 [correct]
+
+  Specifically, define must be followed by (id id ...)
+  An identifier (id) is a sequence of letters (uppercase and/or lowercase,
+  case sensitive) and numbers that must start with a letter.
+  The first id is the name of the function being defined. Any
+  remaining ids are the names of parameters to that function. 
+  In the first line above, we are defining a function called "f", which
+  takes 3 parameters: "x", "y", and "z". All functions must take
+  at least one parameter, but there is no upper limit on the number
+  (so you could make a function that takes 100 or 1000 or 10000 parameters).
+
+  Next must be an = sign, followed by an expression. An expression is
+  one of the following:
+    - A function call:  (fname expr ...)
+      An fname is either an id (specifying a user-defined function) or
+      +, -, *, %, /, ^ specifying a built-in math operation.
+      Note that unlike C, ^ is power. You may wish to use the built-in
+      pow function from the math library. 
+    - A parameter name:  id
+    - A numeric constant:  a sequence of characters which strtod accepts
+                           as a valid double
+  For example, (f 3 4 5.2) is an expression because 3, 4, and 5.2 are
+  expressions, so (f 3 4 5.2) is (id expr expr expr). 
+
+  All function names (the first identifier in the parentheses) must refer
+  to a previously defined function, and all other identifiers must
+  refer to parameters to this function or be numeric constants.
+  It is an error to attempt to re-define a function that is already defined.
+
+  Note that an arbitrary amount of spaces may appear between (but not
+  inside of) any tokens (id, fname, parens, numeric constants) without
+  altering the meaning. 
+  For example
+    (f 3 4 5)
+  and
+    ( f             3       4  5    )
+  are both legal and have the same meaning.
+  However,
+    (fx yz)
+  and
+    (f x y z)
+  both mean two different things (the former calls the function "fx"
+  with one argument, "yz", the later calls the function "f" with three
+  arguments: "x", "y", and "z"). 
+
+  test commands have two arguments.  The first
+  must be an expression with no variables--they may refer
+  to functions, and have numeric constants for the
+  parameters. However, they may call other functions. The following
+  are all valid (assuming appropriate definitions of f, g1, g2, and h
+  exist): 
+    test (f 3 4.2 5) 14.6
+    test (f (g1 1 2) (g2 3 4) (h 5 6 -7))  99.87
+
+  The second argument is the expected value for the expression to
+  evaluate to.  The test command should evaluate its first argument,
+  and compare to its second argument.
+     - You may require that the second argument be a numeric constant
+     - OR you may allow an arbitrary expression to appear there
+        e.g.,  test (f 1 2 3) (g 4 5)
+
+  When your program executes a test statement, its behavior depends on
+  whether or not the evaluation matched the expected result.  If it
+  did, it will print:
+    f(3 4.2 5) = 14.6 [correct]
+  (that is, expression = value [correct] )
+  If not, it will print
+    (g 1 2) = 55.6 [INCORRECT: expected -99.8]
+  (that is, expression = actualValue [INCORRECT: expected expectedValue]
+  
+  NOTE: You should never compare floating point numbers with ==.
+  If you do, for example sqrt(2) * sqrt(2) == 2, you will get "false"
+  (due to the way the rounding works, you end up with sqrt(2) *
+  sqrt(2) being 2.00000000000000044).  Instead, we will consider
+  the test to pass if
+    absoluteValue(expected - actual) < 0.0000000000001
+
+  The built-in math operations (+, -, *, /, %), have the same meaning
+  as in C (and ^ the same as pow).
+  You should also provide the following built-in functions (these names should
+  be pre-defined):
+    floor
+    ceil
+    round
+    logb
+    select
+
+  Of these, floor, ceil, and round should take one argument and behave exactly
+  as in the math library (which you may wish to use).
+
+  The logb function takes two arguments and computes the logarithm
+  of the first in the base specified by the second.  That is
+
+    (logb 16 2)
+
+  would evaluate to 4, since the log (base 2) of 16 is 4.
+
+  The select function takes three arguments test, t, and f.
+  If test >= 0, then select evaluates to its second argument (t),
+  otherwise it evaluates to its third argument (f).
+  For example, you could define the absolute value function as:
+  
+    define (abs x) = (select x x (- 0 x))
+
+  A pound-sign indicates comment to end of line  For example
+    # The following defines the famous xy + z-3 function
+    define (f x y z) = (+ (* x y) (- z 3))
+    test (f 3 4.2 5)  14.6     # some other comment
+    test (f -1 9.2 6) -6.2 
+    
+  If input is invalid, or a test fails, your program should print
+  an error message and continue executing the next line of input.
+
+Step 2: Numerical Integration
+-----------------------------
+
+  The next step is to add support for numerical integration, using the
+  trapezoid method. Recall from calculus that the definite
+  integral of a function is the area under its curve within certain
+  bounds. One way to approximate this integral is to compute the area
+  of many narrow trapezoid (each of whose heights are the value of the
+  function at the left and right sides of the trapezoid) and sum
+  their areas.  With sufficiently small trapezoids, the approximation
+  of the actual area is quite good.  For each individual trapezoid,
+  the area is
+    (f(x) + f(x+width))/2 * width
+  This principle generalizes to multiple dimensions, where the
+  integral computes the volume under a function of 2 parameters,
+  with the volume of one particular "slice" being:
+  (f(x,y) + f(x+width, y) + f(x, y+width) + f(x+width,y+width)) / 4 * width * width
+
+  Another way to think of that is a rectangular prism whose height
+  is the average of the four corners of the slice.
+  This same idea generalizes to any number of dimensions.
+
+  To add this feature, your will add support for a new command "numint"
+  (short for "numerical integration").
+  The number of arguments the numint command takes depends on the
+  number of parameters the function it is integrating requires. 
+
+   1. The first argument will always be the name of a defined function
+   2. The second argument will be the "step size" (that is, the width of
+      each rectangle).
+   3. The remaining arguments come in pairs, specifying the range of
+      integration for each parameter. There must be one range (pair
+      of numbers) for each parameter.
+
+  For example:
+    define (f x y) = (+ (* 2 x) y)
+    numint f 0.001 -1 1 4 5
+  This would compute the volume under the curve of f(x,y) = 2*x + y
+  with x ranging from -1 to 1, and y ranging from 4 to 5. It would
+  compute this by summing the volumes of 2,000,000 rectangular prisms,
+  each of which has length 0.001, and width 0.001, and a height
+  based on the average value of f at the left/right of that particular
+  rectangle. 
+
+  See AOP Chapter 10 Practice Exercises, Question 10.11 for more
+  information on numerical integration.
+
+
+Step 3: Monte Carlo Integration
+-------------------------------
+
+  The third step is to add support for the "mcint" (Monte Carlo
+  Integration) command. This command approximates the area (or volume,
+  etc...) under a curve, but instead of summing the volumes of many
+  rectangles, it uses a Monte Carlo approach.
+
+  In particular, it picks many random points within the bounds of the
+  integration range. It then uses these to estimate the average value
+  of the curve over this interval. That is, if the function is
+  y = f(x), then it computes:  
+
+            f(x1) + f(x2) + ...f(xN)
+    y_avg = ------------------------
+                      N
+		      
+    area = y_avg * (xmax - min)
+
+  For a three dimensional curve (z = f(x,y)) it would be:
+  
+            f(x1,y1) + f(x2,y2) + ... f(xN,yN)
+    z_avg = ----------------------------------
+                          N
+			  
+    volume = z_avg * (xmax - xmin) * (ymax - ymin)
+
+  For higher dimensional curves, the same idea applies.
+
+  The arguments to "mcint" are the same as "numint," except that the
+  second argument is the number of trials (the number of random points
+  to pick) instead of the step size. The first parameter is still the
+  function name, and the remaining parmaters are still the ranges to
+  integrate over. 
+
+
+Step 4: Gradient Ascent
+-----------------------
+
+  Your final task is to add commands to find the maximum (the "max"
+  command) or minimum (the "min" command) by gradient ascent or
+  descent.
+
+  AOP Chapter 10 Practice Exercises, Questions 10.12 and 10.13 have a
+  description of 2-D gradients, ascent, and descent:
+
+  The gradient of a mathematical function that takes multiple inputs
+  is the generalization of the derivative into multiple dimensions. We
+  will consider the two-dimensional case here (although the concept
+  generalizes to any number of dimensions). For a function (f) that
+  takes two inputs x and y, the gradient (Df) is a function whose
+  output is a two-dimensional vector. That is, Df(x,y) is a vector
+  pointing in the direction in which f has the greatest rate of
+  increase at the point (x, y), with a magnitude that is the slope of
+  the graph in that direction. The gradient of the function can be
+  computed by taking the partial derivative of the function with
+  respect to each component. That is, the x-component of the vector is
+  d f(x,y) and the y-component is d f(x,y).
+  
+  In much the same way that we can numerically approximate the
+  derivative of an arbitrary function at a particular point, we can
+  numerically approximate the gradient of an arbitrary function at a
+  particular point.
+
+  The gradient can be useful to numerically find the local maximum or
+  minimum of a function. We can accomplish this by using gradient
+  ascent (to find the maximum) or gradient descent (to find the
+  minimum). Gradient ascent works by starting at a particular point
+  and iteratively improving it by moving along the vector of the
+  gradient at the current point. That is, if we are currently at
+  pcurr, we select the next point pnew by 
+
+    pnew = pcurr + gamma*Df(pcurr),
+
+  where gamma is some factor that we scale the gradient by. In the
+  simplest form of gradient ascent, gamma is constant, although using
+  adaptive values of gamma can improve the rate at which the algorithm
+  converges. Note that gradient descent works in much the same way but
+  goes against the gradient by replacing the + with a - in the above
+  equation. The process ends when it converges, that is, when pnew is
+  suffciently close to pcurr that our answer is good enough (they will 
+  be closer as the function "levels out" as we near the local maximum,
+  where the gradient will be (0, 0)).
+
+Here, f is the two-dimensional function you want to maximize,
+  startPoint has the (x, y) coordinates from which you should start
+  your ascent, gamma is the constant to scale the gradient by when
+  updating your current point, and convergedDistance is the distance
+  between pcurr and pnew, where we consider the algorithm to have
+  converged (that is, when the distance between them is less than
+  convergedDistance, we consider pnew to be “close enough” to the
+  maximum to be the right answer).
+  
+  The commands should take the following arguments:
+   1. The name of the function
+   2. gamma (as described in AOP Question 10.13)
+   3. convergedDistance (again, in AOP Question 10.13)
+   4. The start point, which will have as many numbers as the function has
+      parameters.
+   5. The maximum number of steps to take before giving up and deciding
+      that the ascent/descent does not converge.
+
+  For example, if f is defined
+    define (f x y) = (+ (^ x 2) (- (^ y 2) (+ (* 4 x) 1)
+  then
+    min f 0.1 0.0001 3 3 1000
+  should print
+    (2, 0)
+  (Numerically equivalent answers, such as (2.0, 0.0) are fine.)
