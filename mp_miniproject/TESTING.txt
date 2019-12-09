@@ -1,0 +1,314 @@
+Below are testcases for the command shell I implemented.
+
+/***********************Testcases for step 1**********************/
+
+----------------------------run and exit---------------------------
+
+(0) To run ffosh command shell, just type ./ffosh. The other testcases are implemented by first type ./ffosh to make the shell work.
+    Run: ./ffosh
+    Output: ffosh:/home/yy258/ece551/mp_miniproject$
+    Analysis: Correct, the shell is waiting for the input, also it shows the shell is in the current directory.
+
+(1) Run: exit(no matter what characters are followed after "exit")
+    Output: (the ffosh shell exits and the original shell works, valgrind clean)
+    Analysis: Correct, the ffosh shell is supposed to exit when the user type exit
+    
+(2) Run: Ctrl-D (eof)
+    Output: (the ffosh shell exits and the original shell works)
+    Analysis: Correct, the ffosh shell is supposed to exit when EOF is encountered reading from stdin
+    
+(3) Run: empty input(\n or whitespaces)
+    Output: ffosh:/home/yy258/ece551/mp_miniproject$
+    Analysis: Correct, the ffosh shell is still waiting for input since no valid input is typed in
+
+(4) Run: /home/yy258/ece551/097_bst_map/test
+    Output: (First same output as typing ./test under directory /home/yy258/ece551/097_bst_map, then it prints out)
+    Program was successful 
+    Analysis: Correct, when we type the full path of the program, ffosh runs specified command, after the program successfully run, it prints out Program was successful
+
+(5) Run: /aaa(program that doesn't exist)
+    Output:
+	   Error: execve failed: No such file or directory
+    	   execve: No such file or directory
+	   Program failed with code 1
+    Analysis: Correct, the program doesn't exist, execve the program failed, exit status is 1, so it is supposed to print out Program failed with exit status. But the shell is still working.
+
+(6) Run: /home/yy258/ece551/mp_miniproject/README
+    Outout:
+	   Error: execve failed: Permission denied
+	   execve: Permission denied
+	   Program failed with code
+    Analysis: Correct, the program exits but cannot be execueted, execve the program failed, exit status is 1, so it is supposed to print out Program failed with exit status. But the shell is still working.
+
+(7) Run: /home/yy258/ece551/103_huff_map/testMap /usr/share/dict/words
+    Output: (First same output as typing ./testMap /usr/share/dict/words, then it prints out)
+    	    Program was successful
+    Analysis: Correct, when we type the full path of the program, ffosh run the specified command
+
+
+/***********************Testcases for step 2**********************/ 
+
+-----------------search ECE551 path and run command---------------------------
+
+(1) Run: ls
+    Output: (it lists the files and directories in the current directory)
+    Analysis: Correct, the ffosh shell sets ece551path successfully, then searches ece551path, fill the original command's first argument with the possible path, then it finds /bin/ls is executable and execute it, the result is the same with run ls in original directory
+
+(2) Run: ls -lha
+    Output: (it lists the files and directories in the current directory, write/read permission and so on)
+    Analysis:  Correct, the ffosh shell sets ece551path successfully, then searches ece551path, then it finds /bin/ls is executable and execute it; it also parses the command successfully, it takes 2 arguments, one is ls and the other one is -lha; the result is the same with run ls -lha in original directory
+
+(3) Run: ls       -lha
+    Output: (same result as (2) )
+    Analysis: Correct, because the command with more than one whitespace between arguments is treated as with one whitespace
+    
+(4) Run: ls aaa
+    Output: /bin/ls: cannot access 'aaa': No such file or directory
+    Analysis: Correct, the ffosh shell searches ece551path, then it finds /bin/ls is executable and execute it; it also parses the command successfully, it takes 2 arguments, one is ls and the other one is aaa; since ls aaa is not a executable command, it shows error. The result is the same with run ls -lha in original directory
+
+(5) Run: ls /home/yy258/ece551/mp_miniproject
+    Output: (it lists the files and directories in /home/yy258/ece551/mp_miniproject)
+    Analysis: Correct, ls command execute successfully
+
+(6) Run: aaa(aaa doesnot exit in exe551path)
+    Outout: Command aaa not found
+    	    Error: execve failed: No such file or directory
+    	    execve: No such file or directory
+    	    Program failed with code 1
+    Analysis: Correct, when the command does not have "/" in front of it, it searches ece551path, since ece551path doesnot contain correspond command, it prints out Command aaa not found, execute fails and program is failed with code 1
+
+(7) Run: ./ffosh
+	 exit
+	 exit
+    Output: (it first gets into another ffosh program, after exits from the latter one, it exits from the first one)
+    Analysis: Correct, when "./" is found at the front of command's first argument, it adds current directory to the first argument, fills the path and executes it, so ffosh shell get into another ffosh shell program and needs to exit twice to get back to original command shell
+
+(8) Run: cd /home/yy258/ece551/097_bst_map
+    	 ./test
+    Output: (First same output as typing ./test under directory /home/yy258/ece551/097_bst_map, then it prints out)
+            Program was successful
+    Analysis: Correct. In later steps, I have tested cd command and it implemented successfully. So after changing to /home/yy258/ece551/097_bst_map, ./test can succefully run. When "./" is found at the front of command's first argument, ffosh shell fills it with current directory and exxcutes it.
+
+(9) Run: ./aaa(program aaa doesnot exist in current directory)
+    Output: Error: execve failed: No such file or directory
+    	    execve: No such file or directory
+	    Program failed with code 1
+    Analysis: Correct, aaa is not found in current path, so it cannot be executed.
+
+(10) Run: .
+     	  (or) /
+	  (or) ./
+     Output: Error: execve failed: Permission denied
+     	     execve: Permission denied
+	     Program failed with code 1
+     Analysis: Correct, neither of the three command can be executed, the program failed.
+
+(11) Run: ./README
+     Output: Error: execve failed: Permission denied
+     	     execve: Permission denied
+	     Program failed with code 1
+     Analysis: Correct, README is found in current directory, but not executable
+
+
+-----------------------------------parse  command---------------------------
+I have printed out the command argument to see the parsed command.					  
+
+(1) Run: echo a b 23
+    Output: a b 23
+    	    (parsed command: [echo][a][b][23])
+    Analysis: Correct, because the ffosh shell parses command by whitespace
+
+(2) Run: echo      a  b     23  (whitespace after the last argument)
+    Output: a b 23
+    (parsed command: [echo][a][b][23])
+    Analysis: Correct, because the ffosh shell parses command by whitespace, no matter how many whitespaces are between two commands
+
+(3) Run: program (followed by nothing or whitesoaces)
+    Output: (parsed command: [program])
+    Analysis: Correct, ffosh shell only sees one argument, whitespaces are not regard as valid arguments
+
+(4) Run: myprogram "a   b"   c       "def   ghi"
+    Output: (parsed command: [myprogram][a   b][c][def   ghi])
+    Analysis: Correct, '\"' is used to include literal whitepsace
+
+(5) Run: myprogram a "  " b
+    Output: (parsed command: [myprogram][a][  ][b])
+    Analysis: Correct, '\"' is used to include literal whitepsace
+
+(6) Run: myprogram a\\b\\c d\\
+    Output: (parsed command: [myprogram][a\b\c][d\] )
+    Analysis: Correct, '\\' is used to include backslashes
+
+(8) Run: myprogram \\
+    Output: (parsed command: [myprogram][\])
+    Analysis: Correct, '\\' is used to include backslashes 
+
+(9) Run: myprogram "\"hello world\""
+    Output: (parsed command: [myprogram]["hello world"])
+    Analysis: Correct, '\"' is used to include literal whitepsace, '\\' '\"' is used to incluede '"'
+
+(10) Run: myprogram "\"helloworld\""
+     Output: (parsed command: [myprogram]["helloworld"])
+     Analysis: Correct,'\\' '\"' is used to incluede '"'
+
+(11) Run: myprogram "ii\"helloworld\"ii"
+     Output: (parsed command: [myprogram][ii"helloworld"ii])
+     Analysis: Correct,'\\' '\"' is used to incluede '"'
+
+(12) Run: myprogram "a\\b\\c d\\"
+     Output: (parsed command: [myprogram][a\b\c d\])
+     Analysis: Correct, '\"' is used to include literal whitepsace, '\\' is used to include backslashes
+
+(13) Run: myprogram "\"hello world\""   "a\\b\\c d\\"
+     Output: (parsed command: [myprogram]["hello world"][a\b\c d\])
+     Analysis: Correct,'\\' '\"' is used to incluede '"', '\"' is used to include literal whitepsace, '\\' is used to include backslashes
+
+
+/***********************Testcases for step 3**********************/
+
+---------------------------cd---------------------------
+
+(1) Run: cd
+	 pwd
+    Output: ffosh:/home/yy258$(shell prompt changes)
+            /home/yy258(result of pwd)
+    Analysis:Correct, because simply type cd will change to HOME PATH
+
+(2) Run: cd ../ (or cd ..)
+    	 pwd
+    Output: ffosh:/home/yy258/ece551(shell prompt changes)
+    	    /home/yy258/ece551(result of pwd)
+    Analysis: Correct, type ../ will change to parent directory
+
+(3) Run: cd ../
+    	 cd mp_miniproject
+    Output:(first change to parent directory, then go to mp_miniproject directory under current directory)
+    Analysis: Correct
+
+(4) Run: cd aaa(nonexist directory)
+    Output: Error: change to directory failed: No such file or directory
+    Analysis: Correct, cd failed because directory nonexist
+
+---------------------------set variable---------------------------
+
+(1) Run: set
+    Output: Error: command set needs three arguments
+    Analysis: Correct, because set command needs three arguments.
+
+(2) Run: set var(nothing followed)
+    Output: Error: command set needs three arguments
+    Analysis: Correct, because set command needs three arguments.
+
+(3) Run: set var (followed by one whitespace)
+    	 echo $var
+    Output: (one whitespace)
+    Analysis: Correct, because set command sets $var as  (one whitespace)
+
+(4) Run: set \d 1
+    Output: Error: invalid variable name
+    Analysis: Correct, because variable name must be a combination of letters (case sensitive), underscores,and numbers
+
+(5) Run: set var 1
+    	 echo $var
+    Output: 1
+    Analysis: Correct, after setting variable and then access, the shell replace the variable with its value
+
+(5) Run: set var 1
+    	 echo $var-
+    Output: 1-
+    Analysis: Correct, the shell replace the variable with its value, followed by "-"
+
+(5) Run: set var 1
+    	 set var2 3
+	 echo $var2
+    Output: 3
+    Analysis: Correct, the shell replace the longest possible variable with its value
+
+(6) Run: set var1 a
+    	 set var1 b
+	 echo $var1
+    Output: b
+    Analysis: Correct, the shell updates the variable's value if same variable is set again
+
+(7) Run: set var1 a
+    	 set var2 b
+	 echo $var1 $var2
+    Output: a b
+    Analysis: Correct, the shell replace the longest possible variable with its value
+
+(8) Run: set var1\var2 a
+    Output: Error: invalid variable name
+    Analysis: Correct, because variable name must be a combination of letters (case sensitive), underscores,and numbers
+
+(9) Run: set var1 a  b cdefg
+    	 echo $var1
+    Output: a  b cdefg
+    Analysis: Correct, set command takes all characters after the second argument as the third argument
+
+(9) Run: set $var a
+    	 set $var2 b
+	 echo cc$vardd$var2--
+    Output: ccaddb--
+    Analysis: Correct, the shell replace the longest possible variable with its value
+---------------------------export variable---------------------------
+
+(1) Run: export(nothing followed)
+    Output: Error: command export needs two arguments
+    Analysis: Correct, because export command needs two arguments.
+
+(2) Run: set var1 a
+    	 export var1
+	 env
+    Output: (the last line on the screen shows that var=1)
+    Analysis: Correct, because export command put the current value of var into the environment.
+
+(3) Run: set var1 a
+    	 env
+    Output:(there's no variable name var1 with value a in environment)
+    Analysis: Correct, because if only set without export, the variable will not show in environment
+
+(4) Run: export var(var has not been set)
+    Output: Error: variable not found
+    Analysis: Correct, because the variable is not set and cannot be found
+
+(5) Run: set var1 a
+    	 set var2 b
+    	 export var1 var2
+    Output: Error: variable not found
+    Analysis: Correct, because it takes "var1 var2" as a variable name
+
+(6) Run: set var1 a
+    	 set var1 b
+	 export var1
+	 env
+    Output:(the last line on the screen shows that var1=b)
+    Analysis: Correct, set updates var1's value and then export put it into environment
+
+(7) Run: set var1 a
+    	 export var1
+	 set var1 b
+	 env
+    Output: (the last line on the screen shows that var1=a)
+    Analysis: Correct, set updates var1's value, but not export to environment 
+
+---------------------------reverse variable---------------------------
+
+(1) Run: rev(nothing followed)
+    Output: Error: command rev needs two arguments
+    Analysis: Correct, because rev command needs two arguments. 
+
+(2) Run: set x hello
+    	 rev x
+	 echo $x
+    Output: olleh
+    Analysis: Correct, because rev command reverse variable
+
+(3) Run: set x hello world
+    	 rev x
+	 echo $x
+    Output: dlrow olleh
+    Analysis: Correct, because rev command reverse variable
+
+(4) Run: rev var(var has not been set)
+    Output: Error: variable not found
+    Analysis: Correct, because variable has not been set
