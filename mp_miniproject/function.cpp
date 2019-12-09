@@ -152,7 +152,7 @@ vector<string> parse_three_argu(string source, const string delim) {
       return parsed;
       // cout << "Error: command set needs three arguments" << std::endl;
     }
-    parsed.push_back(source.substr(prev, curr - prev));  //1st argument: set
+    parsed.push_back(source.substr(prev, curr - prev));
     prev = curr + 1;
   }
   parsed.push_back(source.substr(prev));
@@ -168,7 +168,7 @@ vector<string> parse_two_argu(string source, const string delim) {
     parsed.push_back(source.substr(prev));
     return parsed;
   }
-  parsed.push_back(source.substr(prev, curr - prev));  //1st argument: set
+  parsed.push_back(source.substr(prev, curr - prev));
   prev = curr + 1;
   parsed.push_back(source.substr(prev));
   return parsed;
