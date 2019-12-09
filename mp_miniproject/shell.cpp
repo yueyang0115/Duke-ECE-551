@@ -235,7 +235,7 @@ void shell::searchpath() {
   vector<string> filled_path = fillpath();
   for (size_t i = 0; i < filled_path.size(); i++) {
     //cout << "searched_path=" << filled_path[i] << endl;
-    if (access(filled_path[i].c_str(), F_OK) != -1) {
+    if (access(filled_path[i].c_str(), F_OK) != -1) {  //access success
       command[0] = filled_path[i];
       return;
     }
